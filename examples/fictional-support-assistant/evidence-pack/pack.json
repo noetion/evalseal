@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "pack_id": "PACK-SUPPORT-20260731",
+  "candidate_id": "CAND-SUPPORT-2026-07-31",
+  "mode": "fictional",
+  "artifact_status": "final",
+  "created_at": "2026-07-31T11:45:00Z",
+  "owner_actor_id": "ACT-SYSTEM",
+  "policy_bindings": [
+    {"policy_type": "governance", "policy_id": "POL-GOVERNANCE-FICTIONAL", "version": "1.0.0", "sha256": "3b7f7f7caded91351d3c6e74b61b817377236c3ccbed666e76c0e547b9a15048"},
+    {"policy_type": "tailoring", "policy_id": "POL-TAILORING-REFERENCE", "version": "1.0.0", "sha256": "c31276d30e8e52d876736d4b411001b9b48e8fa7c02afa5018bd859467d190a2"},
+    {"policy_type": "change_triggers", "policy_id": "POL-CHANGE-REFERENCE", "version": "1.0.0", "sha256": "712c78059948bac432ba93b4b758aab164d8b7894e035c5338ea7f552d0b259f"}
+  ],
+  "file_map": {
+    "system_manifest": "system-manifest.json",
+    "risk_register": "risk-register.json",
+    "controls": "controls.json",
+    "evaluation_cases": "evaluation-cases.json",
+    "evidence_index": "evidence-index.json",
+    "findings": "findings.json",
+    "approval_decision": "approval-decision.json",
+    "change_assessment": "change-assessment.json"
+  }
+}

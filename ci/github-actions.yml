@@ -1,0 +1,70 @@
+name: LLM evaluation release gate
+
+on:
+  workflow_call:
+    inputs:
+      pack:
+        required: true
+        type: string
+      governance:
+        required: true
+        type: string
+      tailoring:
+        required: true
+        type: string
+      change_policy:
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  release-gate:
+    runs-on: ubuntu-latest
+    environment: evaluation-governance
+    env:
+      GATE_ROOT: .governance/evaluation-methodology
+      PACK_PATH: ${{ inputs.pack }}
+      GOVERNANCE_PATH: ${{ inputs.governance }}
+      TAILORING_PATH: ${{ inputs.tailoring }}
+      CHANGE_POLICY_PATH: ${{ inputs.change_policy }}
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: "3.13"
+      - name: Verify the protected gate release
+        working-directory: ${{ env.GATE_ROOT }}
+        run: sha256sum --check RELEASE_MANIFEST.sha256
+      - name: Install the hash-locked release gate
+        run: |
+          python -m pip install --require-hashes --only-binary=:all: -r "$GATE_ROOT/ci/requirements-linux-py313.lock"
+          python -m pip install --no-deps "$GATE_ROOT/dist/evaluation_methodology_gate-1.0.0-py3-none-any.whl"
+      - name: Preflight the evidence package
+        run: |
+          evaluation-gate preflight \
+            --pack "$PACK_PATH" \
+            --governance "$GOVERNANCE_PATH" \
+            --tailoring "$TAILORING_PATH" \
+            --change-policy "$CHANGE_POLICY_PATH" \
+            --output preflight-report.json
+      - name: Enforce the accountable final decision
+        run: |
+          evaluation-gate gate \
+            --pack "$PACK_PATH" \
+            --governance "$GOVERNANCE_PATH" \
+            --tailoring "$TAILORING_PATH" \
+            --change-policy "$CHANGE_POLICY_PATH" \
+            --output release-gate-report.json
+      - name: Preserve gate reports
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: evaluation-release-gate
+          path: |
+            preflight-report.json
+            release-gate-report.json
+          if-no-files-found: warn
+          retention-days: 90

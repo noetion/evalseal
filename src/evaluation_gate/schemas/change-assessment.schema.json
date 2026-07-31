@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/evaluation-methodology/schemas/change-assessment.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "candidate_id", "artifact_status", "baseline_candidate_id", "changes", "declared_scope", "assessed_by_actor_id", "assessed_at"],
+  "properties": {
+    "schema_version": {"$ref": "common.schema.json#/$defs/schemaVersion"},
+    "candidate_id": {"$ref": "common.schema.json#/$defs/candidateId"},
+    "artifact_status": {"$ref": "common.schema.json#/$defs/artifactStatus"},
+    "baseline_candidate_id": {"type": ["string", "null"], "pattern": "^CAND-[A-Z0-9][A-Z0-9._-]{2,79}$"},
+    "changes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["change_type", "description"],
+        "properties": {
+          "change_type": {"type": "string", "pattern": "^[a-z][a-z0-9_]{2,63}$"},
+          "description": {"type": "string", "minLength": 10}
+        }
+      }
+    },
+    "declared_scope": {"enum": ["documentation", "targeted", "full", "incident"]},
+    "assessed_by_actor_id": {"$ref": "common.schema.json#/$defs/identifier"},
+    "assessed_at": {"$ref": "common.schema.json#/$defs/timestamp"}
+  }
+}

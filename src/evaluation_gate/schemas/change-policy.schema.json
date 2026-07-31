@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/evaluation-methodology/schemas/change-policy.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "policy_id", "version", "status", "effective_at", "approved_at", "approved_by_actor_id", "next_review_at", "triggers"],
+  "properties": {
+    "schema_version": {"$ref": "common.schema.json#/$defs/schemaVersion"},
+    "policy_id": {"$ref": "common.schema.json#/$defs/identifier"},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "status": {"enum": ["reference", "approved", "retired"]},
+    "effective_at": {"$ref": "common.schema.json#/$defs/timestamp"},
+    "approved_at": {"$ref": "common.schema.json#/$defs/timestamp"},
+    "approved_by_actor_id": {"$ref": "common.schema.json#/$defs/identifier"},
+    "next_review_at": {"$ref": "common.schema.json#/$defs/timestamp"},
+    "triggers": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["change_type", "description", "minimum_scope", "required_evidence_types", "requires_new_approval"],
+        "properties": {
+          "change_type": {"type": "string", "pattern": "^[a-z][a-z0-9_]{2,63}$"},
+          "description": {"type": "string", "minLength": 10},
+          "minimum_scope": {"enum": ["documentation", "targeted", "full", "incident"]},
+          "required_evidence_types": {"type": "array", "items": {"$ref": "common.schema.json#/$defs/evidenceType"}, "uniqueItems": true},
+          "requires_new_approval": {"const": true}
+        }
+      }
+    }
+  }
+}

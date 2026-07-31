@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "policy_id": "POL-GOVERNANCE-EXAMPLE",
+  "version": "1.0.0",
+  "status": "template",
+  "organization": "REPLACE WITH ORGANIZATION",
+  "effective_at": "2026-07-31T00:00:00Z",
+  "approved_at": "2026-07-31T00:00:00Z",
+  "approved_by_actor_id": "ACT-GOVERNANCE",
+  "next_review_at": "2027-01-31T00:00:00Z",
+  "actors": [
+    {"actor_id": "ACT-GOVERNANCE", "name": "Replace with governance authority", "roles": ["governance_authority", "executive_risk_authority"], "active": true},
+    {"actor_id": "ACT-SYSTEM", "name": "Replace with system owner", "roles": ["system_owner", "risk_manager"], "active": true},
+    {"actor_id": "ACT-RELEASE", "name": "Replace with release authority", "roles": ["release_authority"], "active": true},
+    {"actor_id": "ACT-SECURITY", "name": "Replace with security reviewer", "roles": ["security_reviewer"], "active": true},
+    {"actor_id": "ACT-PRIVACY", "name": "Replace with privacy reviewer", "roles": ["privacy_reviewer"], "active": true},
+    {"actor_id": "ACT-FAIRNESS", "name": "Replace with fairness reviewer", "roles": ["fairness_reviewer"], "active": true},
+    {"actor_id": "ACT-LEGAL", "name": "Replace with legal reviewer", "roles": ["legal_reviewer"], "active": true},
+    {"actor_id": "ACT-ACCESS", "name": "Replace with accessibility reviewer", "roles": ["accessibility_reviewer"], "active": true},
+    {"actor_id": "ACT-INDEPENDENT", "name": "Replace with independent reviewer", "roles": ["independent_reviewer"], "active": true}
+  ],
+  "risk_acceptance_authority": [
+    {"role": "governance_authority", "max_risk_level": "critical"},
+    {"role": "system_owner", "max_risk_level": "low"},
+    {"role": "risk_manager", "max_risk_level": "moderate"},
+    {"role": "executive_risk_authority", "max_risk_level": "high"}
+  ],
+  "risk_tolerance": {
+    "maximum_accepted_residual_risk": "high",
+    "maximum_conditional_finding_severity": "moderate"
+  },
+  "exception_rules": {
+    "maximum_acceptance_days": 90,
+    "maximum_condition_days": 30,
+    "required_conditional_approval_roles": ["executive_risk_authority"],
+    "not_applicable_approval_roles": ["risk_manager", "governance_authority"],
+    "false_positive_approval_roles": ["independent_reviewer", "security_reviewer"]
+  },
+  "evidence_verifier_roles": {
+    "evaluation_report": ["independent_reviewer"],
+    "security_report": ["security_reviewer"],
+    "red_team_report": ["security_reviewer"],
+    "fairness_impact": ["fairness_reviewer"],
+    "privacy_data": ["privacy_reviewer"],
+    "model_grader_validation": ["independent_reviewer"],
+    "monitoring_plan": ["independent_reviewer"],
+    "incident_plan": ["security_reviewer"],
+    "incident_exercise": ["security_reviewer", "independent_reviewer"],
+    "rollback_exercise": ["independent_reviewer"],
+    "human_oversight": ["independent_reviewer"],
+    "accessibility_review": ["accessibility_reviewer"],
+    "legal_applicability": ["legal_reviewer"],
+    "independent_review": ["independent_reviewer"],
+    "other": ["independent_reviewer"]
+  },
+  "resource_limits": {
+    "maximum_artifact_bytes": 1073741824
+  },
+  "separation_rules": [
+    {"roles": ["release_authority", "independent_reviewer"], "minimum_tier": "tier_3"},
+    {"roles": ["release_authority", "security_reviewer"], "minimum_tier": "tier_4"}
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/evaluation-methodology/schemas/evidence-index.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "candidate_id", "artifact_status", "evidence"],
+  "properties": {
+    "schema_version": {"$ref": "common.schema.json#/$defs/schemaVersion"},
+    "candidate_id": {"$ref": "common.schema.json#/$defs/candidateId"},
+    "artifact_status": {"$ref": "common.schema.json#/$defs/artifactStatus"},
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["evidence_id", "evidence_type", "candidate_id", "path", "sha256", "produced_at", "valid_until", "status", "scope", "owner_actor_id", "verifier_actor_id"],
+        "properties": {
+          "evidence_id": {"$ref": "common.schema.json#/$defs/identifier"},
+          "evidence_type": {"$ref": "common.schema.json#/$defs/evidenceType"},
+          "candidate_id": {"$ref": "common.schema.json#/$defs/candidateId"},
+          "path": {"$ref": "common.schema.json#/$defs/relativePath"},
+          "sha256": {"$ref": "common.schema.json#/$defs/sha256"},
+          "produced_at": {"$ref": "common.schema.json#/$defs/timestamp"},
+          "valid_until": {"$ref": "common.schema.json#/$defs/timestamp"},
+          "status": {"enum": ["pass", "fail", "not_applicable"]},
+          "scope": {"type": "string", "minLength": 10},
+          "owner_actor_id": {"$ref": "common.schema.json#/$defs/identifier"},
+          "verifier_actor_id": {"$ref": "common.schema.json#/$defs/identifier"},
+          "not_applicable_rationale": {"type": "string", "minLength": 10}
+        },
+        "allOf": [
+          {"if": {"properties": {"status": {"const": "not_applicable"}}}, "then": {"required": ["not_applicable_rationale"]}}
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/evaluation-methodology/schemas/tailoring.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "policy_id", "version", "status", "effective_at", "approved_at", "approved_by_actor_id", "next_review_at", "calculation", "dimensions", "tier_by_score", "tier_order", "default_evidence_max_age_days", "tiers", "conditional_requirements"],
+  "properties": {
+    "schema_version": {"$ref": "common.schema.json#/$defs/schemaVersion"},
+    "policy_id": {"$ref": "common.schema.json#/$defs/identifier"},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "status": {"enum": ["reference", "approved", "retired"]},
+    "effective_at": {"$ref": "common.schema.json#/$defs/timestamp"},
+    "approved_at": {"$ref": "common.schema.json#/$defs/timestamp"},
+    "approved_by_actor_id": {"$ref": "common.schema.json#/$defs/identifier"},
+    "next_review_at": {"$ref": "common.schema.json#/$defs/timestamp"},
+    "calculation": {"const": "maximum_dimension_score"},
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "minProperties": 1,
+        "additionalProperties": {"type": "integer", "minimum": 1, "maximum": 4}
+      },
+      "required": ["impact", "autonomy", "data_sensitivity", "exposure"]
+    },
+    "tier_by_score": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["1", "2", "3", "4"],
+      "properties": {
+        "1": {"const": "tier_1"},
+        "2": {"const": "tier_2"},
+        "3": {"const": "tier_3"},
+        "4": {"const": "tier_4"}
+      }
+    },
+    "tier_order": {
+      "const": ["tier_1", "tier_2", "tier_3", "tier_4"]
+    },
+    "default_evidence_max_age_days": {"type": "integer", "minimum": 1, "maximum": 1095},
+    "tiers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["tier_1", "tier_2", "tier_3", "tier_4"],
+      "properties": {
+        "tier_1": {"$ref": "#/$defs/tierPolicy"},
+        "tier_2": {"$ref": "#/$defs/tierPolicy"},
+        "tier_3": {"$ref": "#/$defs/tierPolicy"},
+        "tier_4": {"$ref": "#/$defs/tierPolicy"}
+      }
+    },
+    "conditional_requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["manifest_flag", "equals", "evidence_types", "approval_roles"],
+        "properties": {
+          "manifest_flag": {"enum": ["uses_personal_data", "affects_rights_or_access", "uses_model_grader", "has_external_actions", "has_accessibility_impact", "regulated_use"]},
+          "equals": {"type": "boolean"},
+          "evidence_types": {"type": "array", "minItems": 1, "items": {"$ref": "common.schema.json#/$defs/evidenceType"}, "uniqueItems": true},
+          "approval_roles": {"type": "array", "items": {"type": "string", "pattern": "^[a-z][a-z0-9_]{2,63}$"}, "uniqueItems": true}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "tierPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["description", "required_evidence_types", "required_approval_roles", "evidence_max_age_days"],
+      "properties": {
+        "description": {"type": "string", "minLength": 10},
+        "required_evidence_types": {"type": "array", "minItems": 1, "items": {"$ref": "common.schema.json#/$defs/evidenceType"}, "uniqueItems": true},
+        "required_approval_roles": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^[a-z][a-z0-9_]{2,63}$"}, "uniqueItems": true},
+        "evidence_max_age_days": {
+          "type": "object",
+          "additionalProperties": {"type": "integer", "minimum": 1, "maximum": 1095}
+        }
+      }
+    }
+  }
+}

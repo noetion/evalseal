@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0.0",
+  "candidate_id": "CAND-SUPPORT-2026-07-31",
+  "artifact_status": "final",
+  "baseline_candidate_id": null,
+  "changes": [{"change_type": "first_release", "description": "Initial fictional production approval for the internal support assistant."}],
+  "declared_scope": "full",
+  "assessed_by_actor_id": "ACT-SYSTEM",
+  "assessed_at": "2026-07-29T09:00:00Z"
+}

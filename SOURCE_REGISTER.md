@@ -1,0 +1,79 @@
+# Source register
+
+**Last verified:** 2026-07-31
+
+This register records the primary or authoritative sources used for the publication audit. External links can change. Recheck the current version, applicability, and access date before relying on a claim in a production decision.
+
+## Standards, frameworks, and law
+
+| ID | Source | Verified claim/use | Limits and change risk |
+|---|---|---|---|
+| S01 | [NIST AI Risk Management Framework 1.0](https://doi.org/10.6028/NIST.AI.100-1) | Voluntary, non-sector-specific framework; four Core functions GOVERN, MAP, MEASURE, MANAGE; seven grouped trustworthiness characteristics | NIST states AI RMF 1.0 is being revised. It is not a checklist or certification |
+| S01a | [NIST AI Risk Management Framework landing page](https://www.nist.gov/itl/ai-risk-management-framework) | Current NIST notice that AI RMF 1.0 is being revised | Revision status and resulting mappings can change; recheck before each methodology release |
+| S02 | [NIST AI RMF Core](https://airc.nist.gov/airmf-resources/airmf/5-sec-core/) | The Core functions and outcomes; measurement should include uncertainty and testing before and during operation | Online copy is explicitly an excerpt from AI RMF 1.0 |
+| S02a | [NIST AI risks and trustworthiness characteristics](https://airc.nist.gov/airmf-resources/airmf/3-sec-characteristics/) | Full grouped names of the trustworthiness characteristics and the need for context-specific metric and threshold judgment | Characteristics involve trade-offs and do not individually establish system trustworthiness |
+| S03 | [NIST Generative AI Profile, NIST AI 600-1](https://doi.org/10.6028/NIST.AI.600-1) | Generative-AI-specific risk-management companion to AI RMF 1.0 | Profile guidance is not a conformity standard |
+| S04 | [OWASP Top 10 for LLM Applications 2025](https://genai.owasp.org/resource/owasp-top-10-for-llm-applications-2025/) | Current 2025 LLM risk names LLM01 through LLM10 | The list does not provide the custom Critical/High/Medium ranking used in the old draft |
+| S05 | [OWASP LLM01:2025 Prompt Injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/) | Prompt injection can be direct/indirect; RAG and fine-tuning do not fully mitigate it; layered controls reduce impact | OWASP does not claim foolproof prevention |
+| S06 | [OWASP LLM05:2025 Improper Output Handling](https://genai.owasp.org/llmrisk/llm052025-improper-output-handling/) | Model output needs downstream validation, sanitization/encoding, least privilege, and monitoring | Apply controls to the actual sink and context |
+| S07 | [OWASP LLM06:2025 Excessive Agency](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/) | Excessive functionality, permissions, and autonomy are distinct causes; least privilege and approval for high-impact actions are recommended | Human approval must be meaningful and bound to the actual action |
+| S08 | [OWASP LLM07:2025 System Prompt Leakage](https://genai.owasp.org/llmrisk/llm072025-system-prompt-leakage/) | System prompts should not be treated as secrets or security controls; secrets and authorization must remain outside the model | Prompt disclosure severity depends on underlying content and controls |
+| S09 | [MITRE ATLAS](https://atlas.mitre.org/) | Living knowledge base of adversary tactics and techniques for AI systems, modeled after ATT&CK | Counts and content change. On 2026-07-31 the landing page reported 16 tactics and 173 techniques |
+| S09a | [Google Secure AI Framework](https://saif.google/) and [SAIF system components](https://saif.google/secure-ai-framework/components) | SAIF exists and its current material refers to six core elements | It is Google-authored security guidance, not a generic application release standard or certification |
+| S09b | [Anthropic Responsible Scaling Policy](https://www.anthropic.com/responsible-scaling-policy) | Current Anthropic policy uses capability thresholds and proportionate safeguards for catastrophic-risk governance | Provider-specific frontier-model policy; not a general LLM application evaluation standard. Current version can change frequently |
+| S09c | [CoSAI AI Incident Response Framework](https://www.coalitionforsecureai.org/defending-ai-systems-a-new-framework-for-incident-response-in-the-age-of-intelligent-technology/) | CoSAI publishes an open-source AI Incident Response Framework | The earlier draft did not identify a version or demonstrate a mapping; a framework publication is not automatically a formal standard |
+| S10 | [ISO/IEC 42001:2023 catalog entry](https://www.iso.org/standard/42001) | Specifies requirements for establishing, implementing, maintaining, and continually improving an Artificial Intelligence Management System | Public catalog does not support detailed Annex-control mappings. A licensed copy and qualified assessment are required for conformity claims |
+| S11 | [EU AI Act, Regulation (EU) 2024/1689](https://eur-lex.europa.eu/eli/reg/2024/1689/oj) | Role/risk-based AI rules; relevant high-risk provisions include Articles 9-15, 18-19, 26, and Annex IV | Read with amendments, transition rules, sector law, data-protection law, and system classification |
+| S12 | [Regulation (EU) 2026/1744, Digital Omnibus on AI](https://eur-lex.europa.eu/eli/reg/2026/1744/oj) | Entered into force 2026-07-27; moved application of AI Act Chapter III Sections 1-3 to 2027-12-02 for Article 6(2)/Annex III systems and 2028-08-02 for Article 6(1)/Annex I systems | Very recent amendment. Use the current consolidated legal text and counsel |
+| S13 | [EU AI Act Article 18/19 text](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32024R1689) | Article 18: specified high-risk provider documentation for 10 years; Article 19 and Article 26(6): automatically generated logs under control for at least six months unless other law provides otherwise | Documentation and logs are different records. Retention remains subject to applicable law and data-protection constraints |
+| S14 | [UK Equality Act 2010, section 19](https://www.legislation.gov.uk/ukpga/2010/15/section/19) | Defines indirect discrimination | Not an AI-specific prohibition; application is fact- and context-dependent |
+| S15 | [ICO guidance on automated decision-making](https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/individual-rights/individual-rights/rights-related-to-automated-decision-making-including-profiling/) | Current regulator guidance location for UK automated decision-making and profiling | UK rules changed under the Data (Use and Access) Act 2025. Confirm current commencement and guidance before use |
+| S16 | [29 CFR 1607.4](https://www.ecfr.gov/current/title-29/subtitle-B/chapter-XIV/part-1607/section-1607.4) and [EEOC Q&A](https://www.eeoc.gov/laws/guidance/questions-and-answers-clarify-and-provide-common-interpretation-uniform-guidelines) | Four-fifths rule is a US employment-selection rule of thumb for evidence of adverse impact | It is not a universal legal/fairness threshold or safe harbor and does not generally govern lending |
+
+## Measurement and evaluation research
+
+| ID | Source | Verified claim/use | Limits |
+|---|---|---|---|
+| S17 | [NIST Engineering Statistics Handbook: sample sizes](https://www.itl.nist.gov/div898/handbook/prc/section2/prc222.htm) | Sample size depends on assumptions including significance level, power, variability, and effect of interest | Formula must match the estimand, distribution, study design, and decision |
+| S18 | [Es et al., RAGAs, EACL 2024](https://aclanthology.org/2024.eacl-demo.16/) | RAG evaluation can decompose retrieval relevance/focus, generation faithfulness, and generation quality | Reference-free model metrics still require task validation; current RAGAS metrics exceed the original paper's set |
+| S19 | [RAGAS current metrics](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/) | Current tool exposes retrieval, faithfulness, response relevance, and other metrics | Names, implementations, and defaults are version-dependent |
+| S20 | [Zheng et al., Judging LLM-as-a-Judge, NeurIPS 2023](https://papers.neurips.cc/paper_files/paper/2023/hash/91f18a1287b398d378ef22505bf41832-Abstract-Datasets_and_Benchmarks.html) | Documents position, verbosity, self-enhancement, and reasoning limitations in LLM judges | Results do not establish a universal agreement threshold or validate any particular deployed grader |
+| S21 | [Wang et al., Large Language Models are not Fair Evaluators, ACL 2024](https://aclanthology.org/2024.acl-long.511/) | Demonstrates position bias and evaluates mitigation | Position balancing is a mitigation to validate, not a guarantee |
+| S22 | [Cohen, A Coefficient of Agreement for Nominal Scales (1960)](https://doi.org/10.1177/001316446002000104) | Cohen's kappa is a chance-corrected agreement coefficient for two nominal raters | Kappa is not percentage agreement; weighted or other coefficients are needed for other designs |
+| S23 | [Guo et al., On Calibration of Modern Neural Networks, ICML 2017](https://proceedings.mlr.press/v70/guo17a.html) | Calibration concerns whether predicted probabilities correspond to outcome frequencies; ECE is an empirical summary used in calibration work | Applying ECE to free-form verbal confidence or unlabelled abstention is invalid without a defined probabilistic event |
+| S24 | [Fairlearn fairness-assessment guide](https://fairlearn.org/main/user_guide/assessment/perform_fairness_assessment.html) | Fairness assessment starts from harms and affected groups and uses disaggregated metrics, support counts, and contextual analysis | Library output does not select the legal or ethical fairness objective |
+| S24a | [Kleinberg, Mullainathan, and Raghavan, *Inherent Trade-Offs in the Fair Determination of Risk Scores*](https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ITCS.2017.43) | Except in constrained cases, three common fairness conditions for risk scores cannot all be satisfied simultaneously | The theorem concerns specified risk-score conditions; it does not prove that every fairness definition conflicts in every setting |
+
+## Tool documentation
+
+| ID | Source | Verified scope | Limits |
+|---|---|---|---|
+| S25 | [NVIDIA Garak](https://github.com/NVIDIA/garak) | Open-source LLM/dialog-system probes and detectors for multiple failure modes | Tool/detector coverage and interfaces change; validate findings and pin versions |
+| S26 | [Microsoft PyRIT](https://github.com/microsoft/PyRIT) | Open-source generative-AI security risk identification and red-team framework | Breaking changes occur; the repository moved from Azure to Microsoft in 2026 |
+| S27 | [Promptfoo red-team guide](https://www.promptfoo.dev/docs/red-team/) and [CI/CD guide](https://www.promptfoo.dev/docs/integrations/ci-cd/) | Supports LLM evaluation, adversarial generation/testing, and CI/CD integration | Product documentation is not independent proof of detector validity or compliance |
+| S28 | [Fairlearn](https://fairlearn.org/main/) | Disaggregated metrics and fairness assessment for structured outcomes | Development/main docs can change; pin a release in implementation |
+| S29 | [AI Fairness 360](https://aif360.readthedocs.io/en/latest/) | Open-source fairness datasets, metrics, explainers, and mitigation algorithms | Many methods assume structured prediction tasks and require contextual validation |
+| S30 | [DeepEval](https://github.com/confident-ai/deepeval) | Open-source framework for testing and evaluating LLM applications | Tool-provided metrics and defaults are version-dependent measurements, not authoritative pass criteria |
+
+## Operational implementation references
+
+| ID | Source | Verified claim/use | Limits |
+|---|---|---|---|
+| S31 | [NIST Open Security Controls Assessment Language](https://pages.nist.gov/OSCAL/) | Provides standardized machine-readable XML, JSON, and YAML formats for control implementation and assessment information | The operational gate is LLM-methodology-specific and does not claim OSCAL compatibility |
+| S32 | [NIST OSCAL Assessment Results model](https://pages.nist.gov/OSCAL/learn/concepts/layer/assessment/assessment-results/) | Demonstrates structured assessment results, findings, risks, evidence, expiry, and authorization consumers | Full OSCAL mapping is deferred until an actual integration consumer requires it |
+| S33 | [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12) | Current schema dialect used for the evidence and policy contracts | Schema validation establishes structure, not the truth of supplied evidence |
+| S34 | [Python jsonschema 4.26.0 documentation](https://python-jsonschema.readthedocs.io/en/v4.26.0/) | Implements JSON Schema Draft 2020-12 and is the pinned gate dependency | Dependency updates require regression tests and release review |
+| S35 | [IBM watsonx.governance model-risk workflows](https://www.ibm.com/docs/en/watsonx/w-and-w/2.3.x?topic=components-model-risk-governance-workflows) | Managed workflows can take models, agents, and use cases through stakeholder review and deployment approval | Vendor platform documentation; not independent evidence and not required by this repository |
+| S36 | [Credo AI governance platform](https://www.credo.ai/product) | Vendor states it provides policy packs, approval gates, evidence generation, and audit trails | Vendor claim used only for alternative analysis; the local gate does not reproduce a hosted governance platform |
+| S37 | [Microsoft guidance for governing agents by risk](https://learn.microsoft.com/en-us/agents/center-of-excellence/govern-agents-risk) | Recommends risk-scaled release gates, security/responsible-AI assessment, incident plans, and continuous governance | Platform guidance must be tailored to the adopting organization and system |
+| S38 | [GitHub Actions: using full commit SHAs](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/find-and-customize-actions#using-shas) | Full action commit SHAs are immutable and more reliable than mutable branches or tags | Pinned actions still require reviewed updates and a trusted runner/repository boundary |
+| S39 | [GitHub Actions variables and untrusted input](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-variables) | Runner environment variables avoid direct context interpolation in shell scripts; GitHub warns that attacker-controlled contexts are untrusted | Quoting and environment transfer reduce script injection risk but do not make arbitrary workflow code trusted |
+| S40 | [Setuptools release history on PyPI](https://pypi.org/project/setuptools/) | PyPI records production/stable status and the pinned 83.0.0 build-backend release used to create version 1.0.0 | Build-backend updates require a new package build and release verification |
+
+## Source-handling rules
+
+- Prefer the official legal text, standards body, framework owner, tool repository, or peer-reviewed paper.
+- Do not infer conformity from conceptual alignment.
+- Do not copy a numeric threshold, sample size, duration, metric default, or tool capability into policy without a local rationale and version.
+- Mark examples as hypothetical. Mark vendor/product claims as tool documentation unless independently verified.
+- When a source is paywalled, such as the complete ISO/IEC 42001 text, limit public claims to what the authoritative public page supports.

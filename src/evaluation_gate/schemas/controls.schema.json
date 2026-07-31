@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/evaluation-methodology/schemas/controls.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "candidate_id", "artifact_status", "controls"],
+  "properties": {
+    "schema_version": {"$ref": "common.schema.json#/$defs/schemaVersion"},
+    "candidate_id": {"$ref": "common.schema.json#/$defs/candidateId"},
+    "artifact_status": {"$ref": "common.schema.json#/$defs/artifactStatus"},
+    "controls": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["control_id", "description", "risk_ids", "owner_actor_id", "status", "implementation_refs", "verification_evidence_ids", "acceptance_criteria"],
+        "properties": {
+          "control_id": {"$ref": "common.schema.json#/$defs/identifier"},
+          "description": {"type": "string", "minLength": 10},
+          "risk_ids": {"type": "array", "minItems": 1, "items": {"$ref": "common.schema.json#/$defs/identifier"}, "uniqueItems": true},
+          "owner_actor_id": {"$ref": "common.schema.json#/$defs/identifier"},
+          "status": {"enum": ["Proposed", "Implemented", "Verified", "Ineffective", "Not applicable", "Retired"]},
+          "implementation_refs": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+          "verification_evidence_ids": {"type": "array", "items": {"$ref": "common.schema.json#/$defs/identifier"}, "uniqueItems": true},
+          "verified_at": {"$ref": "common.schema.json#/$defs/timestamp"},
+          "verification_valid_until": {"$ref": "common.schema.json#/$defs/timestamp"},
+          "acceptance_criteria": {"type": "string", "minLength": 10},
+          "not_applicable_approval": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["actor_id", "role", "decided_at", "rationale"],
+            "properties": {
+              "actor_id": {"$ref": "common.schema.json#/$defs/identifier"},
+              "role": {"type": "string", "minLength": 1},
+              "decided_at": {"$ref": "common.schema.json#/$defs/timestamp"},
+              "rationale": {"type": "string", "minLength": 10}
+            }
+          }
+        },
+        "allOf": [
+          {"if": {"properties": {"status": {"enum": ["Implemented", "Verified"]}}}, "then": {"properties": {"implementation_refs": {"minItems": 1}}}},
+          {"if": {"properties": {"status": {"const": "Verified"}}}, "then": {"required": ["verified_at", "verification_valid_until"], "properties": {"verification_evidence_ids": {"minItems": 1}}}},
+          {"if": {"properties": {"status": {"const": "Not applicable"}}}, "then": {"required": ["not_applicable_approval"]}}
+        ]
+      }
+    }
+  }
+}

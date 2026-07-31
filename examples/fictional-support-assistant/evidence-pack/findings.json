@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0.0",
+  "candidate_id": "CAND-SUPPORT-2026-07-31",
+  "artifact_status": "final",
+  "findings": [
+    {"finding_id": "FIND-INJECTION-01", "source_evidence_id": "EVID-REDTEAM", "risk_id": "RISK-INJECTION", "title": "Remote image preview attempted an outbound request", "severity": "high", "blocking": true, "status": "verified_fixed", "owner_actor_id": "ACT-CONTROL", "remediation": "Disabled automatic remote preview fetching and added destination-scheme enforcement at the renderer boundary.", "retest_evidence_id": "EVID-INJECTION-RETEST"}
+  ]
+}

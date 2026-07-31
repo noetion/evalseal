@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "candidate_id": "CAND-TEMPLATE-001",
+  "artifact_status": "draft",
+  "evaluation_set_id": "EVALSET-TEMPLATE",
+  "version": "0.0.0",
+  "dataset_path": "artifacts/evaluation-dataset.json",
+  "dataset_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "cases": [
+    {
+      "case_id": "CASE-TEMPLATE",
+      "requirement_ids": ["REQ-TEMPLATE"],
+      "risk_ids": ["RISK-TEMPLATE"],
+      "category": "representative",
+      "severity": "low",
+      "oracle": "replace-oracle",
+      "acceptance_rule": "Replace with an observable case-level acceptance rule.",
+      "repetitions": 1,
+      "status": "active"
+    }
+  ]
+}

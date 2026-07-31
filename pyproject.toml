@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools==83.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "evaluation-methodology-gate"
+version = "1.0.0"
+description = "Evidence validation and release gate for the LLM Trust and Evaluation Methodology"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "jsonschema[format]==4.26.0",
+]
+
+[project.scripts]
+evaluation-gate = "evaluation_gate.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+evaluation_gate = ["schemas/*.json"]

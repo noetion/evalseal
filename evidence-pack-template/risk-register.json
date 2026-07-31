@@ -1,0 +1,19 @@
+{
+  "schema_version": "1.0.0",
+  "candidate_id": "CAND-TEMPLATE-001",
+  "artifact_status": "draft",
+  "risks": [
+    {
+      "risk_id": "RISK-TEMPLATE",
+      "statement": "Replace with a cause, event, affected person or asset, and impact.",
+      "category": "other",
+      "owner_actor_id": "ACT-SYSTEM",
+      "inherent_risk_level": "low",
+      "treatment": "mitigate",
+      "control_ids": ["CTRL-TEMPLATE"],
+      "status": "open",
+      "residual_risk_level": "low",
+      "rationale": "Replace with evidence-based inherent and residual risk rationale."
+    }
+  ]
+}

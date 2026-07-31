@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/evaluation-methodology/schemas/pack.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "pack_id", "candidate_id", "mode", "artifact_status", "created_at", "owner_actor_id", "policy_bindings", "file_map"],
+  "properties": {
+    "schema_version": {"$ref": "common.schema.json#/$defs/schemaVersion"},
+    "pack_id": {"$ref": "common.schema.json#/$defs/identifier"},
+    "candidate_id": {"$ref": "common.schema.json#/$defs/candidateId"},
+    "mode": {"enum": ["production", "fictional", "template"]},
+    "artifact_status": {"$ref": "common.schema.json#/$defs/artifactStatus"},
+    "created_at": {"$ref": "common.schema.json#/$defs/timestamp"},
+    "owner_actor_id": {"$ref": "common.schema.json#/$defs/identifier"},
+    "policy_bindings": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["policy_type", "policy_id", "version", "sha256"],
+        "properties": {
+          "policy_type": {"enum": ["governance", "tailoring", "change_triggers"]},
+          "policy_id": {"$ref": "common.schema.json#/$defs/identifier"},
+          "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+          "sha256": {"$ref": "common.schema.json#/$defs/sha256"}
+        }
+      }
+    },
+    "file_map": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["system_manifest", "risk_register", "controls", "evaluation_cases", "evidence_index", "findings", "approval_decision", "change_assessment"],
+      "properties": {
+        "system_manifest": {"$ref": "common.schema.json#/$defs/relativePath"},
+        "risk_register": {"$ref": "common.schema.json#/$defs/relativePath"},
+        "controls": {"$ref": "common.schema.json#/$defs/relativePath"},
+        "evaluation_cases": {"$ref": "common.schema.json#/$defs/relativePath"},
+        "evidence_index": {"$ref": "common.schema.json#/$defs/relativePath"},
+        "findings": {"$ref": "common.schema.json#/$defs/relativePath"},
+        "approval_decision": {"$ref": "common.schema.json#/$defs/relativePath"},
+        "change_assessment": {"$ref": "common.schema.json#/$defs/relativePath"}
+      }
+    }
+  }
+}

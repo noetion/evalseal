@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "candidate_id": "CAND-TEMPLATE-001",
+  "artifact_status": "draft",
+  "controls": [
+    {
+      "control_id": "CTRL-TEMPLATE",
+      "description": "Replace with a specific technical, human, administrative, or contractual control.",
+      "risk_ids": ["RISK-TEMPLATE"],
+      "owner_actor_id": "ACT-SYSTEM",
+      "status": "Proposed",
+      "implementation_refs": [],
+      "verification_evidence_ids": [],
+      "acceptance_criteria": "Replace with an observable and decision-relevant acceptance criterion."
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "policy_id": "POL-CHANGE-REFERENCE",
+  "version": "1.0.0",
+  "status": "reference",
+  "effective_at": "2026-07-31T00:00:00Z",
+  "approved_at": "2026-07-31T00:00:00Z",
+  "approved_by_actor_id": "ACT-GOVERNANCE",
+  "next_review_at": "2027-01-31T00:00:00Z",
+  "triggers": [
+    {"change_type": "first_release", "description": "Initial production approval for a system without an approved baseline.", "minimum_scope": "full", "required_evidence_types": ["evaluation_report", "security_report", "monitoring_plan", "incident_plan", "rollback_exercise"], "requires_new_approval": true},
+    {"change_type": "documentation_only", "description": "Editorial change that cannot alter system behavior, scope, ownership, or evidence meaning.", "minimum_scope": "documentation", "required_evidence_types": [], "requires_new_approval": true},
+    {"change_type": "prompt_or_policy", "description": "System, developer, routing, refusal, or policy prompt changes.", "minimum_scope": "targeted", "required_evidence_types": ["evaluation_report", "security_report"], "requires_new_approval": true},
+    {"change_type": "model_or_provider", "description": "Foundation model, model snapshot, provider, grader, or routing model changes.", "minimum_scope": "full", "required_evidence_types": ["evaluation_report", "security_report", "red_team_report", "model_grader_validation"], "requires_new_approval": true},
+    {"change_type": "retrieval_or_corpus", "description": "Embedding, ranking, indexing, ingestion, corpus, or source-authority changes.", "minimum_scope": "targeted", "required_evidence_types": ["evaluation_report", "security_report", "privacy_data"], "requires_new_approval": true},
+    {"change_type": "tool_or_permission", "description": "Tool, action, identity, permission, approval, or egress changes.", "minimum_scope": "full", "required_evidence_types": ["evaluation_report", "security_report", "red_team_report", "human_oversight"], "requires_new_approval": true},
+    {"change_type": "guardrail_or_renderer", "description": "Input/output guardrail, parser, schema, renderer, or downstream interpreter changes.", "minimum_scope": "targeted", "required_evidence_types": ["evaluation_report", "security_report"], "requires_new_approval": true},
+    {"change_type": "data_or_privacy", "description": "Data class, collection, retention, provider transfer, or privacy-control changes.", "minimum_scope": "full", "required_evidence_types": ["privacy_data", "security_report", "legal_applicability"], "requires_new_approval": true},
+    {"change_type": "purpose_population_or_jurisdiction", "description": "Intended use, affected population, autonomy, sector, or jurisdiction changes.", "minimum_scope": "full", "required_evidence_types": ["evaluation_report", "fairness_impact", "privacy_data", "legal_applicability"], "requires_new_approval": true},
+    {"change_type": "dependency_or_infrastructure", "description": "Material package, service, hosting, identity, network, or supply-chain changes.", "minimum_scope": "targeted", "required_evidence_types": ["security_report", "monitoring_plan", "rollback_exercise"], "requires_new_approval": true},
+    {"change_type": "monitoring_or_incident_control", "description": "Monitoring, alerting, logging, rollback, containment, or incident-process changes.", "minimum_scope": "targeted", "required_evidence_types": ["monitoring_plan", "incident_plan", "rollback_exercise"], "requires_new_approval": true},
+    {"change_type": "material_incident", "description": "Confirmed or credible material incident, prohibited event, or control failure.", "minimum_scope": "incident", "required_evidence_types": ["evaluation_report", "security_report", "red_team_report", "incident_exercise", "independent_review"], "requires_new_approval": true},
+    {"change_type": "drift_or_expiry", "description": "Material drift, provider update, evidence expiry, or accumulated change invalidates the approval basis.", "minimum_scope": "full", "required_evidence_types": ["evaluation_report", "security_report", "monitoring_plan"], "requires_new_approval": true}
+  ]
+}

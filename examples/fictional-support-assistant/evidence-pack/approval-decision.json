@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "candidate_id": "CAND-SUPPORT-2026-07-31",
+  "artifact_status": "final",
+  "decision": "approve",
+  "decided_at": "2026-07-31T12:00:00Z",
+  "approvers": [
+    {"actor_id": "ACT-RELEASE", "role": "release_authority", "approved_at": "2026-07-31T12:00:00Z"},
+    {"actor_id": "ACT-SECURITY", "role": "security_reviewer", "approved_at": "2026-07-31T11:50:00Z"},
+    {"actor_id": "ACT-PRIVACY", "role": "privacy_reviewer", "approved_at": "2026-07-31T11:50:00Z"},
+    {"actor_id": "ACT-INDEPENDENT", "role": "independent_reviewer", "approved_at": "2026-07-31T11:55:00Z"}
+  ],
+  "input_hashes": {
+    "pack": "cea4ed2ef1d328d454b6c069c98beba28b57b1151de5a04d4f00c1c437108328",
+    "system_manifest": "cce5329a5ada5848369e26eb1df753ba3c6136d84b97986761f5ba5a26a8c7af",
+    "risk_register": "4d27cce4681ebaa19cb8df5fdf434f43ac65811cc2062d05e081b6e3a32f3d84",
+    "controls": "a31a24f5404b9300e1ea71922e0de50c18392bd0f99de10511fca4882534cc3c",
+    "evaluation_cases": "5f80850a1c452dc481194c8eb4dd4443790646399396f2af7c82df9c2454f835",
+    "evidence_index": "56c2603784abbb92615d331e0c5ea439b64182a41ceabe36736843f47100d3f6",
+    "findings": "beef24c67a73deab2d8f032a09d50848dcaafbc3c370a097175223a6550912bd",
+    "change_assessment": "e8a4254c607bd61a3c97be99817f514bfaca449d051643b3bf1f9a360bd6c8be"
+  },
+  "evidence_ids": ["EVID-EVALUATION", "EVID-SECURITY", "EVID-REDTEAM", "EVID-PRIVACY", "EVID-GRADER", "EVID-MONITORING", "EVID-INCIDENT", "EVID-ROLLBACK", "EVID-OVERSIGHT", "EVID-INJECTION-RETEST"],
+  "residual_risk_ids": ["RISK-DISCLOSURE", "RISK-INJECTION", "RISK-UNSUPPORTED", "RISK-PRIVACY", "RISK-AVAILABILITY"],
+  "conditions": [],
+  "rollback_target": "support-assistant-disabled",
+  "next_review_at": "2026-09-13T12:00:00Z"
+}

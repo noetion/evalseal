@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/evaluation-methodology/schemas/common.schema.json",
+  "$defs": {
+    "schemaVersion": {"const": "1.0.0"},
+    "identifier": {"type": "string", "pattern": "^[A-Z][A-Z0-9_-]{2,63}$"},
+    "candidateId": {"type": "string", "pattern": "^CAND-[A-Z0-9][A-Z0-9._-]{2,79}$"},
+    "nonEmptyString": {"type": "string", "minLength": 1, "maxLength": 4000},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "relativePath": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240,
+      "pattern": "^(?![A-Za-z]:)(?![/\\\\])(?!.*(?:^|[/\\\\])\\.\\.(?:[/\\\\]|$)).+$"
+    },
+    "riskLevel": {"enum": ["low", "moderate", "high", "critical"]},
+    "tier": {"enum": ["tier_1", "tier_2", "tier_3", "tier_4"]},
+    "artifactStatus": {"enum": ["draft", "final"]},
+    "evidenceType": {
+      "enum": [
+        "evaluation_report",
+        "security_report",
+        "red_team_report",
+        "fairness_impact",
+        "privacy_data",
+        "model_grader_validation",
+        "monitoring_plan",
+        "incident_plan",
+        "incident_exercise",
+        "rollback_exercise",
+        "human_oversight",
+        "accessibility_review",
+        "legal_applicability",
+        "independent_review",
+        "other"
+      ]
+    }
+  }
+}

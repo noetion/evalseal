@@ -1,0 +1,8 @@
+{
+  "retrieval_top_k": 5,
+  "remote_fetch_enabled": false,
+  "tools_enabled": [],
+  "raw_html_enabled": false,
+  "tenant_filter_required": true,
+  "max_output_tokens": 800
+}

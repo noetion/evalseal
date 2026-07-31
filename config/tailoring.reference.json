@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "policy_id": "POL-TAILORING-REFERENCE",
+  "version": "1.0.0",
+  "status": "reference",
+  "effective_at": "2026-07-31T00:00:00Z",
+  "approved_at": "2026-07-31T00:00:00Z",
+  "approved_by_actor_id": "ACT-GOVERNANCE",
+  "next_review_at": "2027-01-31T00:00:00Z",
+  "calculation": "maximum_dimension_score",
+  "dimensions": {
+    "impact": {"low": 1, "moderate": 2, "high": 3, "critical": 4},
+    "autonomy": {"assistive": 1, "recommendatory": 2, "transactional": 3, "autonomous_high_impact": 4},
+    "data_sensitivity": {"public": 1, "internal": 2, "confidential": 3, "restricted": 4},
+    "exposure": {"isolated": 1, "internal": 2, "limited_external": 3, "public": 4}
+  },
+  "tier_by_score": {"1": "tier_1", "2": "tier_2", "3": "tier_3", "4": "tier_4"},
+  "tier_order": ["tier_1", "tier_2", "tier_3", "tier_4"],
+  "default_evidence_max_age_days": 180,
+  "tiers": {
+    "tier_1": {
+      "description": "Low-impact, assistive, isolated or internal systems with low-sensitivity data.",
+      "required_evidence_types": ["evaluation_report", "security_report", "monitoring_plan", "incident_plan", "rollback_exercise"],
+      "required_approval_roles": ["release_authority"],
+      "evidence_max_age_days": {"evaluation_report": 90, "security_report": 180}
+    },
+    "tier_2": {
+      "description": "Moderate-impact or recommendatory systems with bounded exposure and data.",
+      "required_evidence_types": ["evaluation_report", "security_report", "monitoring_plan", "incident_plan", "rollback_exercise"],
+      "required_approval_roles": ["release_authority", "security_reviewer"],
+      "evidence_max_age_days": {"evaluation_report": 60, "security_report": 120}
+    },
+    "tier_3": {
+      "description": "High-impact, transactional, confidential-data, or externally exposed systems.",
+      "required_evidence_types": ["evaluation_report", "security_report", "red_team_report", "monitoring_plan", "incident_plan", "rollback_exercise", "human_oversight"],
+      "required_approval_roles": ["release_authority", "security_reviewer", "independent_reviewer"],
+      "evidence_max_age_days": {"evaluation_report": 45, "security_report": 90, "red_team_report": 90}
+    },
+    "tier_4": {
+      "description": "Critical-impact, autonomous high-impact, restricted-data, or public systems requiring strongest assurance.",
+      "required_evidence_types": ["evaluation_report", "security_report", "red_team_report", "monitoring_plan", "incident_plan", "incident_exercise", "rollback_exercise", "human_oversight", "independent_review", "legal_applicability"],
+      "required_approval_roles": ["release_authority", "security_reviewer", "independent_reviewer", "executive_risk_authority"],
+      "evidence_max_age_days": {"evaluation_report": 30, "security_report": 60, "red_team_report": 60, "independent_review": 60}
+    }
+  },
+  "conditional_requirements": [
+    {"manifest_flag": "uses_personal_data", "equals": true, "evidence_types": ["privacy_data"], "approval_roles": ["privacy_reviewer"]},
+    {"manifest_flag": "affects_rights_or_access", "equals": true, "evidence_types": ["fairness_impact", "legal_applicability"], "approval_roles": ["fairness_reviewer", "legal_reviewer"]},
+    {"manifest_flag": "uses_model_grader", "equals": true, "evidence_types": ["model_grader_validation"], "approval_roles": []},
+    {"manifest_flag": "has_external_actions", "equals": true, "evidence_types": ["human_oversight", "red_team_report"], "approval_roles": ["security_reviewer"]},
+    {"manifest_flag": "has_accessibility_impact", "equals": true, "evidence_types": ["accessibility_review"], "approval_roles": ["accessibility_reviewer"]},
+    {"manifest_flag": "regulated_use", "equals": true, "evidence_types": ["legal_applicability"], "approval_roles": ["legal_reviewer"]}
+  ]
+}
