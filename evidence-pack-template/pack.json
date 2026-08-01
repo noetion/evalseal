@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "0.1.0",
   "pack_id": "PACK-TEMPLATE",
   "candidate_id": "CAND-TEMPLATE-001",
   "mode": "template",
@@ -7,9 +7,24 @@
   "created_at": "2026-07-31T00:00:00Z",
   "owner_actor_id": "ACT-SYSTEM",
   "policy_bindings": [
-    {"policy_type": "governance", "policy_id": "POL-GOVERNANCE-EXAMPLE", "version": "1.0.0", "sha256": "4e7804dc8796f230ffa71cbbce78e823536f31092f08f216840722a41f76b04a"},
-    {"policy_type": "tailoring", "policy_id": "POL-TAILORING-REFERENCE", "version": "1.0.0", "sha256": "c31276d30e8e52d876736d4b411001b9b48e8fa7c02afa5018bd859467d190a2"},
-    {"policy_type": "change_triggers", "policy_id": "POL-CHANGE-REFERENCE", "version": "1.0.0", "sha256": "712c78059948bac432ba93b4b758aab164d8b7894e035c5338ea7f552d0b259f"}
+    {
+      "policy_type": "governance",
+      "policy_id": "POL-GOVERNANCE-EXAMPLE",
+      "version": "0.1.0",
+      "sha256": "d293cc81b7d5ccd6655547eb64a2b06aa41aa95a7d4c61b4dd1e181806677763"
+    },
+    {
+      "policy_type": "tailoring",
+      "policy_id": "POL-TAILORING-REFERENCE",
+      "version": "0.1.0",
+      "sha256": "d99893f7fa50f6680e9ac81c6a8500efc948a0abdc6018f3aa5c13b42738cf62"
+    },
+    {
+      "policy_type": "change_triggers",
+      "policy_id": "POL-CHANGE-REFERENCE",
+      "version": "0.1.0",
+      "sha256": "7c609e9d9c92c917b2ef144bece5a6f790492aaccb6f411d18a357c56da368f0"
+    }
   ],
   "file_map": {
     "system_manifest": "system-manifest.json",

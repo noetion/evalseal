@@ -1,16 +1,20 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "0.1.0",
   "candidate_id": "CAND-TEMPLATE-001",
   "artifact_status": "draft",
   "evaluation_set_id": "EVALSET-TEMPLATE",
   "version": "0.0.0",
   "dataset_path": "artifacts/evaluation-dataset.json",
-  "dataset_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "dataset_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
   "cases": [
     {
       "case_id": "CASE-TEMPLATE",
-      "requirement_ids": ["REQ-TEMPLATE"],
-      "risk_ids": ["RISK-TEMPLATE"],
+      "requirement_ids": [
+        "REQ-TEMPLATE"
+      ],
+      "risk_ids": [
+        "RISK-TEMPLATE"
+      ],
       "category": "representative",
       "severity": "low",
       "oracle": "replace-oracle",

@@ -1,14 +1,16 @@
-# LLM Trust and Evaluation Methodology
+# EvalSeal
 
-**Publication status:** Approved as a reference methodology on 2026-07-31. See [PUBLICATION_AUDIT.md](PUBLICATION_AUDIT.md).
+**Evidence-bound release decisions for AI systems.**
 
-**Operational release:** Version 1.0.0 of the evidence schemas and release gate is approved for adoption in production governance pipelines. See [OPERATIONAL_RELEASE_AUDIT.md](OPERATIONAL_RELEASE_AUDIT.md).
+**Release status:** Version 0.1.0 is a reference implementation. It has passed its repository tests but has not yet been exercised against a real release candidate.
 
-**System status:** The repository contains an executable gate and a complete fictional example, but no real LLM application, real evaluation result, deployed control, monitoring system, or production approval. It therefore does not prove that any actual LLM application is ready for production.
+**Trust boundary:** The gate validates supplied records, file integrity, policy rules, and recorded authority. It cannot determine whether a report is truthful or whether a test actually reached the intended system. Its value is procedural evidence binding and fail-closed release control, not independent AI assurance.
+
+**System status:** The repository contains an executable gate and a complete fictional example, but no real LLM application, evaluation result, deployed control, monitoring system, or production approval.
 
 ## Purpose
 
-This methodology helps engineering, product, security, privacy, legal, and risk teams decide whether an LLM application is ready for a defined use and operating environment. It covers six connected layers:
+This reference implementation helps engineering, product, security, privacy, legal, and risk teams structure the evidence and accountable decision for an LLM release candidate. It covers six connected layers:
 
 1. Threat modelling and risk assessment
 2. Quality and task evaluation
@@ -22,11 +24,11 @@ The method must be tailored to the system's intended purpose, affected people, a
 ## Quick start
 
 ```powershell
-python -m pip install --no-deps dist/evaluation_methodology_gate-1.0.0-py3-none-any.whl
-evaluation-gate --help
+python -m pip install --no-deps dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl
+evaluation-gate init my-assessment --candidate-id CAND-MY-SYSTEM-001 --name "My system"
 ```
 
-Start with [the operating guide](docs/OPERATING_GUIDE.md). Adopt organization-owned governance, tailoring, and change policies before assessing a real candidate. The supplied example and reference policies cannot authorize a production deployment.
+Start with the [ten-minute starter](docs/QUICKSTART.md), then use [the operating guide](docs/OPERATING_GUIDE.md). Adopt organization-owned governance, tailoring, and change policies before assessing a real candidate. The supplied example and reference policies cannot authorize a production deployment.
 
 ## Governing principles
 
@@ -65,9 +67,10 @@ Terms such as `active`, `complete`, `compliant`, and `production-ready` must not
 | [05-security-testing.md](05-security-testing.md) | Authorized adversarial testing and deterministic security controls |
 | [06-bias-and-fairness.md](06-bias-and-fairness.md) | Harm analysis, disaggregated evaluation, fairness metrics, and legal cautions |
 | [SOURCE_REGISTER.md](SOURCE_REGISTER.md) | Authoritative sources and the claims they support |
-| [PUBLICATION_AUDIT.md](PUBLICATION_AUDIT.md) | Final fact-check, corrections, scope limits, and sign-off |
-| [OPERATIONAL_RELEASE_AUDIT.md](OPERATIONAL_RELEASE_AUDIT.md) | Implementation verification, review findings, operational sign-off, and release manifest |
+| [PUBLICATION_AUDIT.md](PUBLICATION_AUDIT.md) | Historical fact-check, claim corrections, and scope limits |
+| [OPERATIONAL_RELEASE_AUDIT.md](OPERATIONAL_RELEASE_AUDIT.md) | Repository verification record, limitations, and release status |
 | [docs/OPERATING_GUIDE.md](docs/OPERATING_GUIDE.md) | Installation, evidence workflow, preflight, final gate, and protected CI requirements |
+| [docs/QUICKSTART.md](docs/QUICKSTART.md) | Minimal Tier 1 scaffold, automated hashing, and the shortest safe onboarding path |
 | [docs/TAILORING_GUIDE.md](docs/TAILORING_GUIDE.md) | Risk-tier scaling and conditional evidence requirements |
 | [docs/CHANGE_TRIGGERS.md](docs/CHANGE_TRIGGERS.md) | Partial, full, incident, and documentation reassessment rules |
 | [docs/GOVERNANCE_SETUP.md](docs/GOVERNANCE_SETUP.md) | Real roles, authority limits, identity boundary, and separation of duties |
@@ -113,3 +116,9 @@ Terms such as `active`, `complete`, `compliant`, and `production-ready` must not
 - Review external references at least every six months and after a material legal or framework update.
 - Record source access dates and methodology changes in [SOURCE_REGISTER.md](SOURCE_REGISTER.md), [PUBLICATION_AUDIT.md](PUBLICATION_AUDIT.md), and [OPERATIONAL_RELEASE_AUDIT.md](OPERATIONAL_RELEASE_AUDIT.md).
 - Re-run the publication audit before a major version is issued.
+
+## License
+
+Licensed under the [Apache License 2.0](LICENSE), including its explicit patent
+grant. The license does not certify, warrant, or approve any system assessed
+with this software.

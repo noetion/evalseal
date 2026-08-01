@@ -1,15 +1,24 @@
-# Operational release audit and sign-off
+# Operational verification record
 
-**Release:** Evaluation Methodology Gate 1.0.0  
-**Audit date:** 2026-07-31  
-**Decision:** **APPROVED FOR ADOPTION IN PROTECTED PRODUCTION GOVERNANCE PIPELINES**  
+**Release:** Evaluation Methodology Gate 0.1.0 reference implementation
+
+**Last updated:** 2026-08-01
+
+**Current status:** **NOT YET EXERCISED AGAINST A REAL RELEASE CANDIDATE**
+
 **Actual LLM candidate decision:** **NOT ASSESSED OR APPROVED**
 
-## 1. Scope of this sign-off
+## 1. Scope of this record
 
-This sign-off covers the repository's versioned schemas, policy contracts, evidence-pack structure, deterministic validation engine, command-line release gate, reference CI workflow, documentation, and fictional worked example.
+This record covers repository verification of the schemas, policy contracts,
+evidence-pack structure, deterministic validation engine, command-line release
+gate, reference CI workflow, documentation, and fictional worked example.
 
-It means an organization may install release 1.0.0 as a control in a protected production release process after adopting real governance policies and the trust mechanisms in this audit. It does not approve an LLM application merely because a team follows the documents. Each candidate must supply current evidence for its exact version and receive accountable approval through the gate.
+It shows that the reference implementation passed the checks listed below. It is
+not an independent audit, production endorsement, or assurance opinion. An
+organization may evaluate it as one procedural control in a protected release
+process, but must establish its own policies, trust mechanisms, validation, and
+accountable approval.
 
 The repository contains no real LLM application, authenticated organizational approval, production evaluation result, deployed control, production telemetry, or deployment record. No ISO/IEC 42001 conformity, legal compliance, or product certification is claimed.
 
@@ -25,6 +34,7 @@ The repository contains no real LLM application, authenticated organizational ap
 | Risk-scaled tailoring | `config/tailoring.reference.json` maps impact, autonomy, data sensitivity, and exposure to evidence and approval requirements | Implemented as reference policy; organization adoption is required |
 | Formal change triggers | `config/change-triggers.reference.json` defines documentation, targeted, full, and incident reassessment requirements and requires fresh approval for every final candidate | Implemented as reference policy; protected change evidence is required |
 | Organization-specific governance | `config/governance.example.json` defines actors, roles, authority limits, tolerance, exception rules, verifier roles, separation rules, and resource limits | Implemented as a schema and example; real identities and authority are intentionally not supplied |
+| Onboarding and hash automation | `evaluation-gate init` creates a non-approvable Tier 1 starter; `evaluation-gate hash` calculates policy, artifact, and optional frozen-decision bindings | Implemented and tested; hashing establishes byte integrity, not evidence truth |
 
 ## 3. Architecture and alternative analysis
 
@@ -48,28 +58,32 @@ Operational claims were checked against the primary or authoritative sources in 
 
 ## 5. Verification record
 
-The following checks completed successfully on 2026-07-31:
+The following checks completed successfully, most recently on 2026-08-01:
 
-- 65 of 65 automated tests passed against the pinned runtime dependency set.
+- 69 of 69 automated tests passed against the pinned runtime dependency set.
 - All 13 bundled schemas loaded and passed Draft 2020-12 schema validation.
 - The suite exercised a real, non-mocked positive production engine path that returned `APPROVE` with `authorizes_deployment=true` and zero issues.
 - The complete fictional pack returned `SIMULATED_APPROVE`, `authorizes_deployment=false`, and exit 3.
 - Negative coverage included changed hashes, stale and expired evidence, newer failures, open blockers, unauthorized acceptance, missing roles, self-verification, excessive conditions, invalid change scope, duplicate keys, non-reciprocal risk/control links, incomplete approval evidence, approval chronology, and review-basis expiry.
 - A positive remediation lifecycle proved that historical failed evidence can be tracked, fixed, distinctly retested, and approved without relabeling the historical failure as passing evidence.
-- The final wheel installed in a fresh directory and passed change assessment, preflight, decision, provenance-digest, and exit-behavior smoke tests.
+- The final wheel installed in an isolated target and its packaged `init` and `hash` commands completed successfully. The earlier release checks also covered change assessment, preflight, decision, provenance digest, and exit behavior.
 - All 17 Linux CPython 3.13 runtime artifacts resolved successfully with `--require-hashes` and binary-only enforcement.
 - The GitHub Actions YAML parsed successfully and its protected release job structure was checked.
 
 The final wheel is:
 
-`dist/evaluation_methodology_gate-1.0.0-py3-none-any.whl`  
-SHA-256: `faa78288b92177b6a277d822d1e727a6126e3535dea84f6c139bcfa660a4d7c1`
+`dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl`
+
+SHA-256: `29ecf1211562af3f3239ee48482cc57e6848329a6df7e204c5e57fd6d4cca5bd`
 
 The complete release-file checksums are in `RELEASE_MANIFEST.sha256`. That manifest includes this audit and the wheel but excludes itself.
 
-## 6. Independent review and corrections
+## 6. Repository review and corrections
 
-An independent read-only adversarial review was performed during implementation. Its release blockers were reproduced, corrected, and covered by regression tests. Material corrections included:
+A separate read-only review pass was performed during implementation. This was
+not an independent human or third-party audit. Its reported blockers were
+reproduced, corrected, and covered by regression tests. Material corrections
+included:
 
 - production time uses the live UTC clock and rejects historical overrides;
 - CI installs a protected wheel and hash-locked dependencies, verifies a release manifest, pins official actions to full commits, quotes caller inputs, and requires a protected governance environment;
@@ -82,7 +96,9 @@ An independent read-only adversarial review was performed during implementation.
 - historical failed evidence remains immutable and tracked while approval relies on a distinct passing retest; and
 - optional finding sources still participate in approval chronology, including conditional decisions.
 
-Final independent blocker-closure result: **zero production blockers**, with the complete 65-test suite passing.
+The review found no remaining repository test blocker at that time, with the
+complete 69-test suite passing. This says nothing about an unassessed real
+candidate or organization-specific deployment controls.
 
 ## 7. Required production controls outside this repository
 
@@ -101,18 +117,19 @@ The gate validates supplied bytes and deterministic relationships. It cannot est
 
 Those are explicit trust-boundary dependencies, not unfinished gate features. Adding attestations, OSCAL exchange, hosted identity, evaluation execution, deployment verification, or continuous monitoring belongs in a later release only when a real adopting system supplies the consumer and acceptance criteria.
 
-No further repository change is required before beginning controlled use against a real candidate. The first production candidate is now the next material source of evidence. Any issue found there must enter the change-trigger and release-review process rather than being silently waived.
+The next maturity milestone is a controlled pilot against a real, low-impact
+candidate with authenticated human reviewers. Findings from that pilot must be
+recorded and may require changes before any broader adoption claim.
 
-## 9. Sign-off and launch decision
+## 9. Release status
 
-**Methodology publication:** Approved as recorded in `PUBLICATION_AUDIT.md`.  
-**Gate 1.0.0 installation and controlled production-governance use:** Approved.  
-**Reference CI and evidence-pack adoption:** Approved subject to the external controls in section 7.  
-**Deployment of an actual LLM candidate:** Not approved by this release audit; each candidate requires its own evidence and accountable decision.  
-**ISO/IEC 42001 conformity or legal compliance:** Not assessed or certified.
+- **Reference implementation:** Version 0.1.0, pre-release maturity.
+- **Repository checks:** Passed as recorded in this file and updated release
+  records.
+- **Real candidate experience:** None at the time of this record.
+- **Deployment of an actual system:** Not assessed or approved.
+- **ISO/IEC 42001 conformity or legal compliance:** Not assessed or certified.
 
-**Primary implementation and audit reviewer:** Codex  
-**Independent adversarial reviewer:** Codex release-review agent  
-**Date:** 2026-07-31
-
-This is the final technical sign-off for release 1.0.0. Organizational production authority remains with the accountable organization and cannot be delegated to this repository or its authors.
+This file is a repository verification record, not a technical sign-off.
+Organizational production authority cannot be delegated to this repository or
+its authors.

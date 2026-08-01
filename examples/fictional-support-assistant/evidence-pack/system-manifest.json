@@ -1,27 +1,65 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "0.1.0",
   "candidate_id": "CAND-SUPPORT-2026-07-31",
   "artifact_status": "final",
   "name": "Fictional Internal Support Assistant",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "code_revision": "3a4e0e672759d81609c1f45eb14cdb52efad76aa",
   "environment": "production_candidate",
-  "intended_uses": ["Answer internal support-policy questions using caller-authorized sources."],
-  "prohibited_uses": ["Make employment decisions, provide legal advice, or access another tenant's records."],
-  "jurisdictions": ["United Kingdom"],
+  "intended_uses": [
+    "Answer internal support-policy questions using caller-authorized sources."
+  ],
+  "prohibited_uses": [
+    "Make employment decisions, provide legal advice, or access another tenant's records."
+  ],
+  "jurisdictions": [
+    "United Kingdom"
+  ],
   "models": [
-    {"purpose": "generation", "provider": "Fictional Model Provider", "model_id": "fictional-support-model", "version": "2026-07-15", "version_pinned": true},
-    {"purpose": "evaluation", "provider": "Fictional Evaluation Provider", "model_id": "fictional-claim-grader", "version": "2026-07-10", "version_pinned": true}
+    {
+      "purpose": "generation",
+      "provider": "Fictional Model Provider",
+      "model_id": "fictional-support-model",
+      "version": "2026-07-15",
+      "version_pinned": true
+    },
+    {
+      "purpose": "evaluation",
+      "provider": "Fictional Evaluation Provider",
+      "model_id": "fictional-claim-grader",
+      "version": "2026-07-10",
+      "version_pinned": true
+    }
   ],
   "prompt_bundle_path": "artifacts/prompt-bundle.txt",
   "prompt_bundle_sha256": "d69cf8e54c5f9b264749c9e8cfbf7ccade640f9f0f6cc72d5d189d0b83de4eca",
   "configuration_path": "artifacts/runtime-config.json",
   "configuration_sha256": "29fabc4ea00b3e719a9a1da79279c777a156ad3089cbc81f26c4e43563df2335",
-  "retrieval": {"enabled": true, "corpus_version": "support-policy-2026-07-20", "index_version": "index-2026-07-28", "embedding_model": "fictional-embed-v2"},
+  "retrieval": {
+    "enabled": true,
+    "corpus_version": "support-policy-2026-07-20",
+    "index_version": "index-2026-07-28",
+    "embedding_model": "fictional-embed-v2"
+  },
   "tools": [],
-  "data_classes": ["internal", "synthetic-personal-test-data"],
-  "risk_profile": {"impact": "moderate", "autonomy": "assistive", "data_sensitivity": "confidential", "exposure": "internal"},
+  "data_classes": [
+    "internal",
+    "synthetic-personal-test-data"
+  ],
+  "risk_profile": {
+    "impact": "moderate",
+    "autonomy": "assistive",
+    "data_sensitivity": "confidential",
+    "exposure": "internal"
+  },
   "declared_tier": "tier_3",
-  "applicability": {"uses_personal_data": true, "affects_rights_or_access": false, "uses_model_grader": true, "has_external_actions": false, "has_accessibility_impact": false, "regulated_use": false},
+  "applicability": {
+    "uses_personal_data": true,
+    "affects_rights_or_access": false,
+    "uses_model_grader": true,
+    "has_external_actions": false,
+    "has_accessibility_impact": false,
+    "regulated_use": false
+  },
   "rollback_target": "support-assistant-disabled"
 }

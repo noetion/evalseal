@@ -1,19 +1,25 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "0.1.0",
   "candidate_id": "CAND-TEMPLATE-001",
   "artifact_status": "draft",
   "decision": "reject",
   "decided_at": "2026-07-31T00:00:00Z",
-  "approvers": [{"actor_id": "ACT-RELEASE", "role": "release_authority", "approved_at": "2026-07-31T00:00:00Z"}],
+  "approvers": [
+    {
+      "actor_id": "ACT-RELEASE",
+      "role": "release_authority",
+      "approved_at": "2026-07-31T00:00:00Z"
+    }
+  ],
   "input_hashes": {
-    "pack": "4a7beff2c02d518d8aff7e0fab2cb16746d0cff2b293e225949dc1f08a6d65ce",
-    "system_manifest": "5f4946340363fbea4ca9faf463569c40d084d8e43efaa3a0bf405d2402b66b77",
-    "risk_register": "f063771f3a2a8244e4fe70657d61f1cc21e90fa86f4904f7cb0fb3f99d2aa01f",
-    "controls": "60a9634e75a12a69892a71081fa2780993e1c4d84cc184bc467324238223fa23",
-    "evaluation_cases": "2fd84f25c7eeb25698f26fb8104e5c8244c386ba0ba66fbaf614b6fb6924e10b",
-    "evidence_index": "708f597a9fd158bae86bce5cab5878e7af065270a2cd213676cc9add1003db5d",
-    "findings": "aeb69d24b9fb91584b71c40aaf77fd42155db7319df01d51d69e19e2fcad2566",
-    "change_assessment": "308496ebedae558e8afcde155ebabce2958d36ea3d57fb1a3272bd3a91f7fde3"
+    "pack": "4a5e6770a59d26858e4b6d881b42fd55d58c2762e432475247f894e58bf2adad",
+    "system_manifest": "f81b49b425d513e9456fb75787e7d8f519658ed04264e1230892ed12b176f9a6",
+    "risk_register": "8aedf19bd48ccc9ce208ad99088ffe64c0033fafbd564910bc559cbd66acc038",
+    "controls": "f48d8fe2295644ed154dd0be0dd2e2443483c56080b7f2f095350768b61ac323",
+    "evaluation_cases": "901d59ade45074b306064b9e4e60bf2ed3ba79318d026f758c6ecbb150c6d562",
+    "evidence_index": "0016ee3ffe10510153118a9e062f5bf39fee387b180336625ffafa4f6d49580f",
+    "findings": "c8b395f8fbe083d9d9c82f7abc5894c91b80c6fc5986aaefcf28272c607f1ca3",
+    "change_assessment": "e34d1b6128fd9b5ca6d3adb4662c481f28c43317c520de61efaccb5bd797e628"
   },
   "evidence_ids": [],
   "residual_risk_ids": [],

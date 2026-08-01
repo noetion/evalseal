@@ -1,24 +1,57 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "0.1.0",
   "candidate_id": "CAND-TEMPLATE-001",
   "artifact_status": "draft",
   "name": "Replace with system name",
   "version": "replace-version",
   "code_revision": "replace-revision",
   "environment": "production_candidate",
-  "intended_uses": ["Replace with a bounded intended use"],
-  "prohibited_uses": ["Replace with a prohibited use"],
-  "jurisdictions": ["Replace jurisdiction"],
-  "models": [{"purpose": "generation", "provider": "replace-provider", "model_id": "replace-model", "version": "replace-version", "version_pinned": false}],
+  "intended_uses": [
+    "Replace with a bounded intended use"
+  ],
+  "prohibited_uses": [
+    "Replace with a prohibited use"
+  ],
+  "jurisdictions": [
+    "Replace jurisdiction"
+  ],
+  "models": [
+    {
+      "purpose": "generation",
+      "provider": "replace-provider",
+      "model_id": "replace-model",
+      "version": "replace-version",
+      "version_pinned": false
+    }
+  ],
   "prompt_bundle_path": "artifacts/prompt-bundle.txt",
-  "prompt_bundle_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+  "prompt_bundle_sha256": "b52ccd93e70474f2143b38606dcee46472fc9121bee2265cad7d846a5353ae23",
   "configuration_path": "artifacts/runtime-config.json",
-  "configuration_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
-  "retrieval": {"enabled": false, "corpus_version": null, "index_version": null, "embedding_model": null},
+  "configuration_sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+  "retrieval": {
+    "enabled": false,
+    "corpus_version": null,
+    "index_version": null,
+    "embedding_model": null
+  },
   "tools": [],
-  "data_classes": ["replace-data-class"],
-  "risk_profile": {"impact": "low", "autonomy": "assistive", "data_sensitivity": "public", "exposure": "isolated"},
+  "data_classes": [
+    "replace-data-class"
+  ],
+  "risk_profile": {
+    "impact": "low",
+    "autonomy": "assistive",
+    "data_sensitivity": "public",
+    "exposure": "isolated"
+  },
   "declared_tier": "tier_1",
-  "applicability": {"uses_personal_data": false, "affects_rights_or_access": false, "uses_model_grader": false, "has_external_actions": false, "has_accessibility_impact": false, "regulated_use": false},
+  "applicability": {
+    "uses_personal_data": false,
+    "affects_rights_or_access": false,
+    "uses_model_grader": false,
+    "has_external_actions": false,
+    "has_accessibility_impact": false,
+    "regulated_use": false
+  },
   "rollback_target": "replace-with-approved-baseline-or-disable-path"
 }

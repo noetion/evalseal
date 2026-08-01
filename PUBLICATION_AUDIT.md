@@ -1,10 +1,13 @@
-# Publication audit and sign-off
+# Historical publication review record
 
-> Historical content audit. The methodology was subsequently operationalized. See [OPERATIONAL_RELEASE_AUDIT.md](OPERATIONAL_RELEASE_AUDIT.md) for the current executable release and production-adoption sign-off.
+> Historical content review performed before the executable reference
+> implementation was added. It is retained as a claim-correction ledger, not as
+> independent assurance, certification, or current production authorization.
 
 **Audit date:** 2026-07-31  
 **Scope:** All Markdown files in this repository and the external claims they contain  
-**Decision:** **APPROVED FOR PUBLICATION AS A REFERENCE METHODOLOGY**  
+**Historical result:** The reviewed draft was considered suitable for publication as a reference methodology.
+
 **Production-system decision:** **NOT GRANTED**. No production system or control implementation was provided for assessment.
 
 ## 1. Decision basis
@@ -185,9 +188,9 @@ The ledger covers the material externally verifiable, governance, strategic, leg
 | B11 | AIF360 has a stable “70+ metrics” capability claim | Brittle marketing/count claim | Removed; retained only verified general library scope |
 | B12 | Google What-If Tool should be recommended as an active standard tool | Current support not established | Removed from the core tooling list |
 
-## 5. Publication conditions
+## 5. Conditions on reuse
 
-The approval remains valid while all of the following hold:
+The review conclusions remain applicable while all of the following hold:
 
 1. The documents retain their explicit guidance-only and non-certification scope.
 2. Hypothetical examples are not relabeled as real evidence.
@@ -208,29 +211,17 @@ Verification completed on 2026-07-31:
 - all files decode as strict UTF-8, with no detected mojibake, unresolved publication markers, or em dashes; and
 - a fresh second-pass review found no blocking publication issue. It confirmed the remaining scope boundary: this is documentation assurance, not implementation or production-system assurance.
 
-### Audited content manifest
+The historical embedded hash table was removed after later edits made five of
+its eight entries stale. Current release bytes are recorded only in
+`RELEASE_MANIFEST.sha256`, which is regenerated as part of release preparation.
 
-The hashes below identify the eight content artifacts covered by this sign-off. `PUBLICATION_AUDIT.md` is excluded from its own manifest because it contains the manifest.
+## 7. Review status
 
-| File | SHA-256 |
-|---|---|
-| README.md | `ad9afbc4fbf838434eea465bce05f533d14dfea271c6fdbd821627cc40a0b8a2` |
-| 01-framework.md | `e5f048d432798585b779f934f314d2be5719e3b9d9c60a4a2e2bfa5e2bb6b64d` |
-| 02-threat-modelling-for-llm-apps.md | `035edfa3a9eb009b1e3f20dfc75303b43666bf08cdf5484ade9f52a4a7f315e2` |
-| 03-golden-set-design.md | `6e28075fb511b8484f62938b93d88c092b78f1969f6f06b63c334b7348d25aa8` |
-| 04-governance-mapping.md | `0d58ff00f3823d940af38a22cb0c2a1d4f1ab6fcec2c0b86c99d06fe9f47f905` |
-| 05-security-testing.md | `b7cf0fa65e5e68fc396658e5ccfec229cdc9af8ede296f0de53a07ee29dc4c5b` |
-| 06-bias-and-fairness.md | `cfd04f2544eed28a35785d4dd7094cd0a29404eb4816e9f7690b7c019b9f5c29` |
-| SOURCE_REGISTER.md | `d7ad0c78770a25e96ce85ecad7675c7b925ef597739a1b2686b695a8a4be4a31` |
+- The claim-correction ledger remains useful as historical review evidence.
+- It does not approve deployment of an actual system.
+- It does not establish ISO/IEC 42001 conformity or legal compliance.
+- No human legal reviewer, accredited assessor, or independent technical
+  reviewer signed this review.
 
-## 7. Sign-off
-
-**Publication content:** Approved, subject to the conditions above.  
-**Use as an internal evaluation baseline:** Approved, with system-specific tailoring and accountable ownership.  
-**Deployment of any actual LLM system:** Not approved by this audit because no implementation or operating evidence was supplied.  
-**ISO/IEC 42001 conformity or legal compliance:** Not assessed or certified.  
-
-**Reviewer:** Codex, evidence-based publication audit and editorial review  
-**Date:** 2026-07-31
-
-No separate human legal reviewer, accredited ISO/IEC 42001 assessor, or independent technical reviewer signed this repository. Organizational publication and production authority remain with the accountable owner.
+Publication and production authority remain with the accountable repository and
+system owners.

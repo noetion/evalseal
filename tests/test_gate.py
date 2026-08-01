@@ -13,6 +13,7 @@ from unittest.mock import patch
 
 from evaluation_gate.cli import main as cli_main
 from evaluation_gate.engine import GateReport, _schema_bundle, assess_change, evaluate_pack
+from evaluation_gate.onboarding import refresh_hashes
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -87,6 +88,89 @@ class GateTests(unittest.TestCase):
         self.assertEqual(1, result)
         self.assertIsNotNone(mocked_evaluate.call_args.kwargs["as_of"])
 
+    def test_init_creates_minimal_non_approvable_workspace(self) -> None:
+        target = self.base / "starter"
+        result = cli_main([
+            "init", str(target),
+            "--candidate-id", "CAND-QUICKSTART-001",
+            "--name", "Quickstart assistant",
+        ])
+        self.assertEqual(0, result)
+        pack = read_json(target / "evidence" / "current" / "pack.json")
+        manifest = read_json(target / "evidence" / "current" / "system-manifest.json")
+        self.assertEqual("template", pack["mode"])
+        self.assertEqual("CAND-QUICKSTART-001", pack["candidate_id"])
+        self.assertEqual("tier_1", manifest["declared_tier"])
+        self.assertEqual("Quickstart assistant", manifest["name"])
+        self.assertTrue((target / "governance" / "governance.json").is_file())
+
+        report = evaluate_pack(
+            target / "evidence" / "current",
+            target / "governance" / "governance.json",
+            target / "governance" / "tailoring.json",
+            target / "governance" / "change-triggers.json",
+            as_of=AS_OF,
+        )
+        self.assertEqual("REJECT", report.decision)
+        self.assertIn("NON_PRODUCTION_PACK", codes(report))
+
+    def test_init_refuses_to_overwrite_nonempty_directory(self) -> None:
+        target = self.base / "occupied"
+        target.mkdir()
+        (target / "keep.txt").write_text("preserve", encoding="utf-8")
+        result = cli_main([
+            "init", str(target),
+            "--candidate-id", "CAND-QUICKSTART-001",
+            "--name", "Quickstart assistant",
+        ])
+        self.assertEqual(1, result)
+        self.assertEqual("preserve", (target / "keep.txt").read_text(encoding="utf-8"))
+
+    def test_hash_refreshes_artifact_and_approval_bindings(self) -> None:
+        artifact = self.pack / "artifacts" / "evaluation-report.md"
+        artifact.write_text(artifact.read_text(encoding="utf-8") + "\nclarification\n", encoding="utf-8")
+        self.assertIn("EVIDENCE_HASH_MISMATCH", codes(self.evaluate()))
+
+        approval_path = self.pack / "approval-decision.json"
+        approval = read_json(approval_path)
+        approval["artifact_status"] = "draft"
+        approval["decision"] = "reject"
+        write_json(approval_path, approval)
+
+        refresh_hashes(
+            self.pack,
+            self.governance,
+            self.tailoring,
+            self.change_policy,
+            include_approval=True,
+        )
+        approval = read_json(approval_path)
+        approval["artifact_status"] = "final"
+        approval["decision"] = "approve"
+        write_json(approval_path, approval)
+        report = self.evaluate()
+        self.assertEqual("SIMULATED_APPROVE", report.decision)
+        self.assertFalse(report.blocking_issues)
+
+    def test_hash_refuses_to_rebind_final_approval(self) -> None:
+        before = {
+            path.name: path.read_bytes()
+            for path in self.pack.glob("*.json")
+        }
+        with self.assertRaisesRegex(ValueError, "refusing to rebind a final approval"):
+            refresh_hashes(
+                self.pack,
+                self.governance,
+                self.tailoring,
+                self.change_policy,
+                include_approval=True,
+            )
+        after = {
+            path.name: path.read_bytes()
+            for path in self.pack.glob("*.json")
+        }
+        self.assertEqual(before, after)
+
     def test_template_is_schema_valid_but_never_approvable(self) -> None:
         report = evaluate_pack(
             ROOT / "evidence-pack-template",
@@ -118,7 +202,7 @@ class GateTests(unittest.TestCase):
         self.assertFalse(report.blocking_issues)
         self.assertFalse(report.authorizes_deployment)
         self.assertEqual("fictional", report.mode)
-        self.assertEqual("1.0.0", report.gate_version)
+        self.assertEqual("0.1.0", report.gate_version)
         self.assertIn("gate_source", report.digests)
         self.assertIn("approval_decision", report.digests)
 

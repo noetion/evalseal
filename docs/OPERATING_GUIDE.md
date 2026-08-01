@@ -26,7 +26,7 @@ It does not execute model evaluations, prove that a report is truthful, provide 
 Requires Python 3.11 or newer.
 
 ```powershell
-python -m pip install --no-deps dist/evaluation_methodology_gate-1.0.0-py3-none-any.whl
+python -m pip install --no-deps dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl
 evaluation-gate --help
 ```
 
@@ -46,6 +46,17 @@ See [GOVERNANCE_SETUP.md](GOVERNANCE_SETUP.md) and [TAILORING_GUIDE.md](TAILORIN
 
 ## Per-candidate workflow
 
+For a new assessment, scaffold the policies and Tier 1 starter pack first:
+
+```powershell
+evaluation-gate init my-assessment `
+  --candidate-id CAND-MY-SYSTEM-001 `
+  --name "My system"
+```
+
+See [QUICKSTART.md](QUICKSTART.md). The starter is non-approvable until its
+placeholders and example policies are replaced.
+
 ### 1. Create the evidence pack
 
 Copy `evidence-pack-template/` to a candidate-specific directory. Give the pack and candidate stable identifiers. Populate all nine JSON records and place source reports under `artifacts/`.
@@ -60,6 +71,14 @@ Record SHA-256 hashes for:
 - every evidence artifact.
 
 The gate rejects a changed file when its recorded hash is not updated. Policy updates require a new binding and accountable review. After preflight, freeze `pack.json`, the manifest, risk register, controls, evaluation cases, evidence index, findings, and change assessment. The final human approval must record the exact hash of each in `approval-decision.json`; any later edit invalidates the approval.
+
+Use `evaluation-gate hash` to calculate these fields instead of editing digest
+strings manually. Run it without `--approval` while assembling evidence. After
+all inputs are frozen but while the decision record is still `draft`, run it
+once with `--approval`. The authorized human then reviews those bound inputs and
+records the final decision. The command refuses to rebind a final approval.
+Hash automation establishes byte integrity only; it does not make evidence
+truthful, sufficient, or independently verified.
 
 ### 3. Assess the change
 

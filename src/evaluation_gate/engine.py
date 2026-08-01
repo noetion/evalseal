@@ -28,7 +28,7 @@ SCHEMA_FILES = {
     "change_policy": "change-policy.schema.json",
 }
 
-GATE_VERSION = "1.0.0"
+GATE_VERSION = "0.1.0"
 MAX_JSON_BYTES = 10 * 1024 * 1024
 RISK_RANK = {"low": 1, "moderate": 2, "high": 3, "critical": 4}
 SCOPE_RANK = {"documentation": 1, "targeted": 2, "full": 3, "incident": 4}

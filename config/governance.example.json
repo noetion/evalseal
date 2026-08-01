@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "0.1.0",
   "policy_id": "POL-GOVERNANCE-EXAMPLE",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "status": "template",
   "organization": "REPLACE WITH ORGANIZATION",
   "effective_at": "2026-07-31T00:00:00Z",

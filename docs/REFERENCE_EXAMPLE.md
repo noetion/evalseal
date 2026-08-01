@@ -35,7 +35,7 @@ Expected result:
 
 ```text
 Decision: SIMULATED_APPROVE
-Gate version: 1.0.0
+Gate version: 0.1.0
 Mode: fictional
 Authorizes deployment: false
 Tier: tier_3

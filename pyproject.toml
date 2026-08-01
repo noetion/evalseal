@@ -4,9 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "evaluation-methodology-gate"
-version = "1.0.0"
-description = "Evidence validation and release gate for the LLM Trust and Evaluation Methodology"
+version = "0.1.0"
+description = "Evidence binding and accountable release-gate reference implementation for AI systems"
 readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
 requires-python = ">=3.11"
 dependencies = [
   "jsonschema[format]==4.26.0",
@@ -20,3 +22,17 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 evaluation_gate = ["schemas/*.json"]
+
+[tool.setuptools.data-files]
+"share/evaluation-methodology/evidence-pack-template" = [
+  "evidence-pack-template/*.json",
+  "evidence-pack-template/README.md",
+]
+"share/evaluation-methodology/evidence-pack-template/artifacts" = [
+  "evidence-pack-template/artifacts/*",
+]
+"share/evaluation-methodology/config" = [
+  "config/governance.example.json",
+  "config/tailoring.reference.json",
+  "config/change-triggers.reference.json",
+]

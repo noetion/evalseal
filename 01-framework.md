@@ -147,7 +147,7 @@ Permitted decisions:
 
 ### Executable enforcement
 
-The version 1.0.0 `evaluation-gate` command operationalizes this evidence gate. It validates the candidate pack against organization-approved governance, tailoring, and change-trigger policies, then returns `APPROVE`, `CONDITIONAL`, or `REJECT` for the recorded decision. Run `preflight` before human approval and the final `gate` before deployment. See [the operating guide](docs/OPERATING_GUIDE.md).
+The version 0.1.0 `evaluation-gate` command operationalizes this evidence gate. It validates the candidate pack against organization-approved governance, tailoring, and change-trigger policies, then returns `APPROVE`, `CONDITIONAL`, or `REJECT` for the recorded decision. Run `preflight` before human approval and the final `gate` before deployment. See [the operating guide](docs/OPERATING_GUIDE.md).
 
 The command verifies structure, references, hashes, freshness, authority, and decision consistency. It does not prove that a report is truthful, authenticate a person outside the file, execute an evaluation, or confirm that the deployment used the approved bytes. Protected evidence generation, authenticated approvals, CI integrity, and deployment provenance remain required.
 

@@ -1,7 +1,7 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "0.1.0",
   "policy_id": "POL-GOVERNANCE-FICTIONAL",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "status": "approved",
   "organization": "Fictional Example Ltd",
   "effective_at": "2026-07-01T09:00:00Z",

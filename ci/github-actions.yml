@@ -41,7 +41,7 @@ jobs:
       - name: Install the hash-locked release gate
         run: |
           python -m pip install --require-hashes --only-binary=:all: -r "$GATE_ROOT/ci/requirements-linux-py313.lock"
-          python -m pip install --no-deps "$GATE_ROOT/dist/evaluation_methodology_gate-1.0.0-py3-none-any.whl"
+          python -m pip install --no-deps "$GATE_ROOT/dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl"
       - name: Preflight the evidence package
         run: |
           evaluation-gate preflight \

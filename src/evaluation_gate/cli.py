@@ -7,6 +7,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from .engine import assess_change, evaluate_pack
+from .onboarding import init_workspace, refresh_hashes
 
 
 def _as_of(value: str | None) -> datetime | None:
@@ -87,6 +88,18 @@ def build_parser() -> argparse.ArgumentParser:
     change.add_argument("--policy", required=True, help="Change-trigger policy JSON")
     change.add_argument("--format", choices=("text", "json"), default="text")
     change.add_argument("--output", help="Also write the JSON report to this path")
+
+    init = subparsers.add_parser("init", help="Create a minimal, non-approvable Tier 1 starter workspace")
+    init.add_argument("directory", help="Empty directory to create or populate")
+    init.add_argument("--candidate-id", required=True, help="Stable identifier such as CAND-SUPPORT-001")
+    init.add_argument("--name", required=True, help="Human-readable candidate name")
+
+    hashes = subparsers.add_parser("hash", help="Refresh declared file hashes; this does not validate evidence truth")
+    hashes.add_argument("--pack", required=True, help="Evidence-pack directory containing pack.json")
+    hashes.add_argument("--governance", required=True, help="Governance policy JSON")
+    hashes.add_argument("--tailoring", required=True, help="Tailoring policy JSON")
+    hashes.add_argument("--change-policy", required=True, help="Change-trigger policy JSON")
+    hashes.add_argument("--approval", action="store_true", help="Also bind the approval decision to current input files")
     return parser
 
 
@@ -94,6 +107,25 @@ def main(argv: list[str] | None = None) -> int:
     parser = build_parser()
     args = parser.parse_args(argv)
     try:
+        if args.command == "init":
+            target, pack = init_workspace(Path(args.directory), args.candidate_id, args.name)
+            print(f"Created starter workspace: {target}")
+            print(f"Evidence pack: {pack}")
+            print("Status: template only; replace placeholders and obtain real approval before production use")
+            return 0
+
+        if args.command == "hash":
+            refreshed = refresh_hashes(
+                Path(args.pack),
+                Path(args.governance),
+                Path(args.tailoring),
+                Path(args.change_policy),
+                include_approval=args.approval,
+            )
+            print(f"Refreshed {len(refreshed)} declared hashes")
+            print("Hashing binds bytes; it does not establish that evidence is truthful or sufficient")
+            return 0
+
         if args.command in {"gate", "preflight"}:
             report = evaluate_pack(
                 pack_dir=Path(args.pack),

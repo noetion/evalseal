@@ -1,6 +1,11 @@
 # Evidence pack template
 
-Copy this directory for each release candidate. Replace every template value, set every artifact to `final`, bind the exact approved policy hashes, add the required evidence files under `artifacts/`, and run preflight. Freeze the decision inputs, record their exact hashes in `approval-decision.json`, obtain accountable approval, and then run the final gate.
+Use `evaluation-gate init` for a complete starter workspace, or copy this
+directory for each release candidate. Replace every template value, set every
+artifact to `final`, add the required evidence files under `artifacts/`, and run
+`evaluation-gate hash` to bind the policy and evidence bytes before preflight.
+Freeze the decision inputs, obtain accountable approval, run the hash command
+once with `--approval`, and then run the final gate.
 
 The template is intentionally **not production-approvable**. Its pack mode is `template`, its risk is unresolved, and its decision is `reject`. This prevents an untouched example from being mistaken for approval evidence.
 
