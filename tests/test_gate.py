@@ -171,6 +171,32 @@ class GateTests(unittest.TestCase):
         }
         self.assertEqual(before, after)
 
+    def test_hash_writes_canonical_lf_json(self) -> None:
+        approval_path = self.pack / "approval-decision.json"
+        approval = read_json(approval_path)
+        approval["artifact_status"] = "draft"
+        approval["decision"] = "reject"
+        approval_path.write_bytes(
+            (json.dumps(approval, indent=2) + "\n").replace("\n", "\r\n").encode("utf-8")
+        )
+
+        refresh_hashes(
+            self.pack,
+            self.governance,
+            self.tailoring,
+            self.change_policy,
+            include_approval=True,
+        )
+
+        for name in (
+            "pack.json",
+            "system-manifest.json",
+            "evaluation-cases.json",
+            "evidence-index.json",
+            "approval-decision.json",
+        ):
+            self.assertNotIn(b"\r\n", (self.pack / name).read_bytes())
+
     def test_template_is_schema_valid_but_never_approvable(self) -> None:
         report = evaluate_pack(
             ROOT / "evidence-pack-template",

@@ -22,7 +22,8 @@ _POLICY_FILENAMES = {
 
 def _write_json(path: Path, value: dict[str, Any]) -> None:
     temporary = path.with_suffix(path.suffix + ".tmp")
-    temporary.write_text(json.dumps(value, indent=2) + "\n", encoding="utf-8")
+    with temporary.open("w", encoding="utf-8", newline="\n") as stream:
+        stream.write(json.dumps(value, indent=2) + "\n")
     temporary.replace(path)
 
 
