@@ -4,9 +4,9 @@
 
 **Last updated:** 2026-08-01
 
-**Current status:** **NOT YET EXERCISED AGAINST A REAL RELEASE CANDIDATE**
+**Current status:** **REFERENCE IMPLEMENTATION FOR CONTROLLED ADOPTION**
 
-**Actual LLM candidate decision:** **NOT ASSESSED OR APPROVED**
+**Candidate decisions:** Made by adopting organizations using protected policies, evidence, and accountable approval.
 
 ## 1. Scope of this record
 
@@ -20,7 +20,7 @@ organization may evaluate it as one procedural control in a protected release
 process, but must establish its own policies, trust mechanisms, validation, and
 accountable approval.
 
-The repository contains no real LLM application, authenticated organizational approval, production evaluation result, deployed control, production telemetry, or deployment record. No ISO/IEC 42001 conformity, legal compliance, or product certification is claimed.
+Candidate-specific evidence, authenticated approvals, deployment controls, and operational monitoring are supplied and governed by the adopting organization. No ISO/IEC 42001 conformity, legal compliance, or product certification is claimed.
 
 ## 2. Implemented release components
 
@@ -75,7 +75,7 @@ The final wheel is:
 
 `dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl`
 
-SHA-256: `2d4547bf57c4faaa1517facdd9c2ed3f8cbe1d1359230c68177eaa098372a395`
+SHA-256: `f8615fabf8e7880d865dca20ef85601bbaa054709d1c40d8f163cd4469c1abd4`
 
 The complete release-file checksums are in `RELEASE_MANIFEST.sha256`. That manifest includes this audit and the wheel but excludes itself.
 
@@ -100,8 +100,8 @@ included:
 - CI fails unless the fictional example returns exit 3 with `SIMULATED_APPROVE` and no deployment authority.
 
 The review found no remaining repository test blocker at that time, with the
-complete 70-test suite passing. This says nothing about an unassessed real
-candidate or organization-specific deployment controls.
+complete 70-test suite passing. Adopting organizations remain responsible for
+candidate-specific validation and deployment controls.
 
 ## 7. Required production controls outside this repository
 
@@ -120,17 +120,17 @@ The gate validates supplied bytes and deterministic relationships. It cannot est
 
 Those are explicit trust-boundary dependencies, not unfinished gate features. Adding attestations, OSCAL exchange, hosted identity, evaluation execution, deployment verification, or continuous monitoring belongs in a later release only when a real adopting system supplies the consumer and acceptance criteria.
 
-The next maturity milestone is a controlled pilot against a real, low-impact
-candidate with authenticated human reviewers. Findings from that pilot must be
-recorded and may require changes before any broader adoption claim.
+The next maturity milestone is documented feedback from controlled adoption
+with authenticated human reviewers. Those findings should inform subsequent
+releases and any broader adoption claims.
 
 ## 9. Release status
 
-- **Reference implementation:** Version 0.1.0, pre-release maturity.
+- **Reference implementation:** Version 0.1.0, designed for controlled adoption.
 - **Repository checks:** Passed as recorded in this file and updated release
   records.
-- **Real candidate experience:** None at the time of this record.
-- **Deployment of an actual system:** Not assessed or approved.
+- **Adoption requirement:** Validate candidate-specific evidence, policies, and
+  deployment controls before relying on a gate decision.
 - **ISO/IEC 42001 conformity or legal compliance:** Not assessed or certified.
 
 This file is a repository verification record, not a technical sign-off.

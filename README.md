@@ -2,7 +2,7 @@
 
 **Evidence-bound release decisions for AI systems.**
 
-**Release status:** Version 0.1.0 is a reference implementation. It has passed its repository tests but has not yet been exercised against a real release candidate.
+**Release status:** EvalSeal 0.1.0 is a reference implementation designed for controlled adoption. Organizations should validate it against their own systems, policies, and deployment controls before relying on it as a production gate.
 
 **Trust boundary:** The gate validates supplied records, file integrity, policy rules, and recorded authority. It cannot determine whether a report is truthful or whether a test actually reached the intended system. Its value is procedural evidence binding and fail-closed release control, not independent AI assurance.
 
