@@ -164,9 +164,9 @@ The review conclusions remain applicable while all of the following hold:
 
 ## Verification record
 
-Verification completed on 2026-07-31:
+For the 2026-07-31 methodology corpus, verification completed as follows:
 
-- all nine Markdown artifacts were read after the final edits;
+- all nine Markdown artifacts in that corpus were read after the final edits;
 - 92 material claim families from the earlier publication and supplied prior review were adjudicated in the ledger;
 - all 106 Markdown link references were parsed, covering 39 unique external destinations, with no missing local targets;
 - every external source used by the seven core methodology documents appears in [SOURCE_REGISTER.md](SOURCE_REGISTER.md);
