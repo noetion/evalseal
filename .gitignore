@@ -4,3 +4,6 @@ __pycache__/
 *.egg-info/
 build/
 .coverage
+.pytest_cache/
+.venv/
+dist-local/

@@ -78,7 +78,7 @@ The ledger covers the material externally verifiable, governance, strategic, leg
 | F06 | NIST mappings establish compliance | False implication | Mappings labeled interpretive; NIST is voluntary and not a checklist/certification |
 | F07 | OWASP assigns Critical/High/Medium priorities to individual 2025 risks | Inaccurate | All custom priorities removed; local severity must come from the application |
 | F08 | OWASP 2025 risk names LLM01-LLM10 | Verified | Retained and linked to official 2025 list |
-| F09 | MITRE ATLAS had 84 techniques as of 2026, per the prior audit | Inaccurate/currently obsolete | Official site reported 16 tactics and 173 techniques on audit date; methodology omits brittle counts |
+| F09 | MITRE ATLAS had 84 techniques as of 2026, per the prior audit | Any fixed count is currently obsolete | ATLAS releases monthly and its counts change; the methodology cites stable tactic and technique identifiers and omits brittle counts |
 | F10 | ISO/IEC 42001 provides exact structures for model cards, audit trails, and the draft's Annex mappings | Not established from cited evidence | Limited to verified AIMS scope; exact mapping requires licensed standard and qualified review |
 | F11 | ISO/IEC 42001 has exactly 38 Annex A controls | Commonly reported but not independently verified from the accessible official catalog | Count removed; a licensed copy must be used for any exact Annex A statement or mapping |
 | F12 | The methodology “satisfies” EU AI Act requirements | Inaccurate compliance claim | Replaced with applicability-specific support language and no conformity claim |

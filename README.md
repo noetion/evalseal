@@ -24,9 +24,11 @@ The method must be tailored to the system's intended purpose, affected people, a
 ## Quick start
 
 ```powershell
-python -m pip install --no-deps dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl
+python -m pip install dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl
 evaluation-gate init my-assessment --candidate-id CAND-MY-SYSTEM-001 --name "My system"
 ```
+
+A plain install resolves the pinned `jsonschema[format]` dependency from PyPI. Protected pipelines should instead use the hash-locked install path in the [operating guide](docs/OPERATING_GUIDE.md).
 
 Start with the [ten-minute starter](docs/QUICKSTART.md), then use [the operating guide](docs/OPERATING_GUIDE.md). Adopt organization-owned governance, tailoring, and change policies before assessing a real candidate. The supplied example and reference policies cannot authorize a production deployment.
 
@@ -70,6 +72,7 @@ Terms such as `active`, `complete`, `compliant`, and `production-ready` must not
 | [PUBLICATION_AUDIT.md](PUBLICATION_AUDIT.md) | Historical fact-check, claim corrections, and scope limits |
 | [OPERATIONAL_RELEASE_AUDIT.md](OPERATIONAL_RELEASE_AUDIT.md) | Repository verification record, limitations, and release status |
 | [docs/OPERATING_GUIDE.md](docs/OPERATING_GUIDE.md) | Installation, evidence workflow, preflight, final gate, and protected CI requirements |
+| [docs/ARCHITECTURE_AND_TRUST_BOUNDARY.md](docs/ARCHITECTURE_AND_TRUST_BOUNDARY.md) | Why the gate exists, what it can prove, and what remains outside its trust boundary |
 | [docs/QUICKSTART.md](docs/QUICKSTART.md) | Minimal Tier 1 scaffold, automated hashing, and the shortest safe onboarding path |
 | [docs/TAILORING_GUIDE.md](docs/TAILORING_GUIDE.md) | Risk-tier scaling and conditional evidence requirements |
 | [docs/CHANGE_TRIGGERS.md](docs/CHANGE_TRIGGERS.md) | Partial, full, incident, and documentation reassessment rules |
