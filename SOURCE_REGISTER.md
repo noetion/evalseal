@@ -1,6 +1,6 @@
 # Source register
 
-**Last verified:** 2026-07-31
+**Last verified:** 2026-08-02
 
 This register records the primary or authoritative sources used for the publication audit. External links can change. Recheck the current version, applicability, and access date before relying on a claim in a production decision.
 
@@ -18,7 +18,7 @@ This register records the primary or authoritative sources used for the publicat
 | S06 | [OWASP LLM05:2025 Improper Output Handling](https://genai.owasp.org/llmrisk/llm052025-improper-output-handling/) | Model output needs downstream validation, sanitization/encoding, least privilege, and monitoring | Apply controls to the actual sink and context |
 | S07 | [OWASP LLM06:2025 Excessive Agency](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/) | Excessive functionality, permissions, and autonomy are distinct causes; least privilege and approval for high-impact actions are recommended | Human approval must be meaningful and bound to the actual action |
 | S08 | [OWASP LLM07:2025 System Prompt Leakage](https://genai.owasp.org/llmrisk/llm072025-system-prompt-leakage/) | System prompts should not be treated as secrets or security controls; secrets and authorization must remain outside the model | Prompt disclosure severity depends on underlying content and controls |
-| S09 | [MITRE ATLAS](https://atlas.mitre.org/) | Living knowledge base of adversary tactics and techniques for AI systems, modeled after ATT&CK | Counts and content change. On 2026-07-31 the landing page reported 16 tactics and 173 techniques |
+| S09 | [MITRE ATLAS](https://atlas.mitre.org/) | Living knowledge base of adversary tactics and techniques for AI systems, modeled after ATT&CK | Counts and content change on a monthly release cadence; the [official data releases](https://github.com/mitre-atlas/atlas-data/releases) reported 16 tactics in mid-2026. Records must use stable identifiers, never counts |
 | S09a | [Google Secure AI Framework](https://saif.google/) and [SAIF system components](https://saif.google/secure-ai-framework/components) | SAIF exists and its current material refers to six core elements | It is Google-authored security guidance, not a generic application release standard or certification |
 | S09b | [Anthropic Responsible Scaling Policy](https://www.anthropic.com/responsible-scaling-policy) | Current Anthropic policy uses capability thresholds and proportionate safeguards for catastrophic-risk governance | Provider-specific frontier-model policy; not a general LLM application evaluation standard. Current version can change frequently |
 | S09c | [CoSAI AI Incident Response Framework](https://www.coalitionforsecureai.org/defending-ai-systems-a-new-framework-for-incident-response-in-the-age-of-intelligent-technology/) | CoSAI publishes an open-source AI Incident Response Framework | The earlier draft did not identify a version or demonstrate a mapping; a framework publication is not automatically a formal standard |

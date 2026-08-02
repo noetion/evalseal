@@ -2,7 +2,7 @@
 
 **Release:** Evaluation Methodology Gate 0.1.0 reference implementation
 
-**Last updated:** 2026-08-01
+**Last updated:** 2026-08-02
 
 **Current status:** **REFERENCE IMPLEMENTATION FOR CONTROLLED ADOPTION**
 
@@ -58,9 +58,9 @@ Operational claims were checked against the primary or authoritative sources in 
 
 ## 5. Verification record
 
-The following checks completed successfully, most recently on 2026-08-01:
+The following checks completed successfully, most recently on 2026-08-02:
 
-- 70 of 70 automated tests passed against the pinned runtime dependency set.
+- 70 of 70 automated tests passed against the pinned runtime dependency set on Windows and Linux checkouts, including after a fresh LF checkout.
 - All 13 bundled schemas loaded and passed Draft 2020-12 schema validation.
 - The suite exercised a real, non-mocked positive production engine path that returned `APPROVE` with `authorizes_deployment=true` and zero issues.
 - The complete fictional pack returned `SIMULATED_APPROVE`, `authorizes_deployment=false`, and exit 3.
@@ -70,12 +70,14 @@ The following checks completed successfully, most recently on 2026-08-01:
 - The final wheel installed in an isolated target and its packaged `init` and `hash` commands completed successfully. The earlier release checks also covered change assessment, preflight, decision, provenance digest, and exit behavior.
 - All 17 Linux CPython 3.13 runtime artifacts resolved successfully with `--require-hashes` and binary-only enforcement.
 - The GitHub Actions YAML parsed successfully and its protected release job structure was checked.
+- On 2026-08-02 the pinned GitHub Action commit SHAs were resolved against their official release tags, the pinned jsonschema and setuptools versions were confirmed on PyPI, the referenced tool repositories (NVIDIA/garak, microsoft/PyRIT, confident-ai/deepeval) resolved, the NIST AI RMF revision notice was confirmed current, and the Regulation (EU) 2026/1744 high-risk application dates (2027-12-02 and 2028-08-02) were confirmed against EUR-Lex and the European Commission.
+- On 2026-08-02 every local Markdown link resolved, `RELEASE_MANIFEST.sha256` matched the staged Git blobs, the wheel contents matched the source tree byte for byte, and the fictional example returned `SIMULATED_APPROVE` with exit 3 through the installed CLI.
 
 The final wheel is:
 
 `dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl`
 
-SHA-256: `f8615fabf8e7880d865dca20ef85601bbaa054709d1c40d8f163cd4469c1abd4`
+SHA-256: `3eed1a5b90e048b8d059009f6811c69fcaf5fa3efe4edceb9edc8d6c69a072e3`
 
 The complete release-file checksums are in `RELEASE_MANIFEST.sha256`. That manifest includes this audit and the wheel but excludes itself.
 
@@ -98,6 +100,11 @@ included:
 - optional finding sources still participate in approval chronology, including conditional decisions;
 - repository text is normalized to LF while wheels are explicitly binary; and
 - CI fails unless the fictional example returns exit 3 with `SIMULATED_APPROVE` and no deployment authority.
+
+A further pass on 2026-08-02 corrected:
+
+- the README quick start and operating-guide install commands, which used `--no-deps` without first installing the pinned `jsonschema[format]` dependency and therefore failed in a clean environment; and
+- an unverifiable MITRE ATLAS technique count in the source register and historical audit ledger, replaced with the monthly-cadence, stable-identifier guidance the methodology already prescribes.
 
 The review found no remaining repository test blocker at that time, with the
 complete 70-test suite passing. Adopting organizations remain responsible for

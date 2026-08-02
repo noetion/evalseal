@@ -26,11 +26,16 @@ It does not execute model evaluations, prove that a report is truthful, provide 
 Requires Python 3.11 or newer.
 
 ```powershell
-python -m pip install --no-deps dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl
+python -m pip install dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl
 evaluation-gate --help
 ```
 
-The only direct runtime dependency is the pinned `jsonschema[format]` package. Install it through the applicable locked environment before using `--no-deps`. The schemas use JSON Schema Draft 2020-12. The released Linux CI path uses the hash-locked transitive dependency set in `ci/requirements-linux-py313.lock` and the verified wheel under `dist/`.
+The only direct runtime dependency is the pinned `jsonschema[format]` package; a plain install resolves it from PyPI. The schemas use JSON Schema Draft 2020-12. A protected environment must not rely on a plain PyPI resolution: install the hash-locked transitive dependency set first (`ci/requirements-linux-py313.lock` for the released Linux CPython 3.13 path), then install the verified wheel under `dist/` with `--no-deps`:
+
+```powershell
+python -m pip install --require-hashes --only-binary=:all: -r ci/requirements-linux-py313.lock
+python -m pip install --no-deps dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl
+```
 
 ## One-time organizational setup
 
