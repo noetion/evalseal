@@ -22,7 +22,8 @@ def _as_of(value: str | None) -> datetime | None:
 def _write_report(report: dict[str, object], output: str | None, output_format: str) -> None:
     rendered = json.dumps(report, indent=2, sort_keys=True)
     if output:
-        Path(output).write_text(rendered + "\n", encoding="utf-8")
+        with Path(output).open("w", encoding="utf-8", newline="\n") as stream:
+            stream.write(rendered + "\n")
     if output_format == "json":
         print(rendered)
         return
@@ -43,7 +44,8 @@ def _write_report(report: dict[str, object], output: str | None, output_format: 
 def _write_change_report(report: dict[str, object], output: str | None, output_format: str) -> None:
     rendered = json.dumps(report, indent=2, sort_keys=True)
     if output:
-        Path(output).write_text(rendered + "\n", encoding="utf-8")
+        with Path(output).open("w", encoding="utf-8", newline="\n") as stream:
+            stream.write(rendered + "\n")
     if output_format == "json":
         print(rendered)
         return

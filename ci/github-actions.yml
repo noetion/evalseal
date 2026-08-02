@@ -20,6 +20,47 @@ permissions:
   contents: read
 
 jobs:
+  fictional-example-regression:
+    runs-on: ubuntu-latest
+    env:
+      GATE_ROOT: .governance/evaluation-methodology
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: "3.13"
+      - name: Verify the protected gate release
+        working-directory: ${{ env.GATE_ROOT }}
+        run: sha256sum --check RELEASE_MANIFEST.sha256
+      - name: Install the hash-locked release gate
+        run: |
+          python -m pip install --require-hashes --only-binary=:all: -r "$GATE_ROOT/ci/requirements-linux-py313.lock"
+          python -m pip install --no-deps "$GATE_ROOT/dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl"
+      - name: Assert the fictional pack remains internally consistent
+        run: |
+          set +e
+          evaluation-gate gate \
+            --pack "$GATE_ROOT/examples/fictional-support-assistant/evidence-pack" \
+            --governance "$GATE_ROOT/examples/fictional-support-assistant/governance.json" \
+            --tailoring "$GATE_ROOT/config/tailoring.reference.json" \
+            --change-policy "$GATE_ROOT/config/change-triggers.reference.json" \
+            --allow-fictional \
+            --as-of "2026-07-31T12:30:00Z" \
+            --output fictional-example-report.json
+          status=$?
+          set -e
+          test "$status" -eq 3
+          python -c 'import json; report = json.load(open("fictional-example-report.json", encoding="utf-8")); assert report["decision"] == "SIMULATED_APPROVE"; assert report["authorizes_deployment"] is False'
+      - name: Preserve the regression report
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: fictional-example-regression
+          path: fictional-example-report.json
+          if-no-files-found: warn
+          retention-days: 90
+
   release-gate:
     runs-on: ubuntu-latest
     environment: evaluation-governance

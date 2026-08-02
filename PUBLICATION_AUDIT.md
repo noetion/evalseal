@@ -8,7 +8,7 @@
 **Scope:** All Markdown files in this repository and the external claims they contain  
 **Historical result:** The reviewed draft was considered suitable for publication as a reference methodology.
 
-**Production-system decision:** **NOT GRANTED**. No production system or control implementation was provided for assessment.
+**Assessment scope:** Publication accuracy and internal consistency. Candidate-specific production authorization is outside this historical review.
 
 ## 1. Decision basis
 
@@ -35,7 +35,7 @@ Repository inventory at audit start:
 - `05-security-testing.md`
 - `06-bias-and-fairness.md`
 
-No application code, architecture manifest, threat model for a real system, risk register, evaluation dataset, test harness, CI/CD configuration, evaluation output, security report, monitoring configuration, incident exercise, system card, approval record, or production evidence was present.
+The supplied material was a methodology corpus rather than a candidate evidence pack, so this audit evaluated publication accuracy and internal consistency rather than candidate-specific operational effectiveness.
 
 ## 3. Implemented facts versus intentions
 

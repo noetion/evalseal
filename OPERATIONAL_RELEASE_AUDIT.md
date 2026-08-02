@@ -4,9 +4,9 @@
 
 **Last updated:** 2026-08-01
 
-**Current status:** **NOT YET EXERCISED AGAINST A REAL RELEASE CANDIDATE**
+**Current status:** **REFERENCE IMPLEMENTATION FOR CONTROLLED ADOPTION**
 
-**Actual LLM candidate decision:** **NOT ASSESSED OR APPROVED**
+**Candidate decisions:** Made by adopting organizations using protected policies, evidence, and accountable approval.
 
 ## 1. Scope of this record
 
@@ -20,7 +20,7 @@ organization may evaluate it as one procedural control in a protected release
 process, but must establish its own policies, trust mechanisms, validation, and
 accountable approval.
 
-The repository contains no real LLM application, authenticated organizational approval, production evaluation result, deployed control, production telemetry, or deployment record. No ISO/IEC 42001 conformity, legal compliance, or product certification is claimed.
+Candidate-specific evidence, authenticated approvals, deployment controls, and operational monitoring are supplied and governed by the adopting organization. No ISO/IEC 42001 conformity, legal compliance, or product certification is claimed.
 
 ## 2. Implemented release components
 
@@ -60,10 +60,11 @@ Operational claims were checked against the primary or authoritative sources in 
 
 The following checks completed successfully, most recently on 2026-08-01:
 
-- 69 of 69 automated tests passed against the pinned runtime dependency set.
+- 70 of 70 automated tests passed against the pinned runtime dependency set.
 - All 13 bundled schemas loaded and passed Draft 2020-12 schema validation.
 - The suite exercised a real, non-mocked positive production engine path that returned `APPROVE` with `authorizes_deployment=true` and zero issues.
 - The complete fictional pack returned `SIMULATED_APPROVE`, `authorizes_deployment=false`, and exit 3.
+- Hash-generated JSON uses canonical LF bytes on every operating system, and the release manifest is generated from staged Git blobs rather than platform-dependent working-tree bytes.
 - Negative coverage included changed hashes, stale and expired evidence, newer failures, open blockers, unauthorized acceptance, missing roles, self-verification, excessive conditions, invalid change scope, duplicate keys, non-reciprocal risk/control links, incomplete approval evidence, approval chronology, and review-basis expiry.
 - A positive remediation lifecycle proved that historical failed evidence can be tracked, fixed, distinctly retested, and approved without relabeling the historical failure as passing evidence.
 - The final wheel installed in an isolated target and its packaged `init` and `hash` commands completed successfully. The earlier release checks also covered change assessment, preflight, decision, provenance digest, and exit behavior.
@@ -74,7 +75,7 @@ The final wheel is:
 
 `dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl`
 
-SHA-256: `29ecf1211562af3f3239ee48482cc57e6848329a6df7e204c5e57fd6d4cca5bd`
+SHA-256: `f8615fabf8e7880d865dca20ef85601bbaa054709d1c40d8f163cd4469c1abd4`
 
 The complete release-file checksums are in `RELEASE_MANIFEST.sha256`. That manifest includes this audit and the wheel but excludes itself.
 
@@ -94,11 +95,13 @@ included:
 - duplicate JSON object keys fail closed;
 - the change-assessment text command reports its required scope, evidence types, fresh-approval requirement, and issues;
 - historical failed evidence remains immutable and tracked while approval relies on a distinct passing retest; and
-- optional finding sources still participate in approval chronology, including conditional decisions.
+- optional finding sources still participate in approval chronology, including conditional decisions;
+- repository text is normalized to LF while wheels are explicitly binary; and
+- CI fails unless the fictional example returns exit 3 with `SIMULATED_APPROVE` and no deployment authority.
 
 The review found no remaining repository test blocker at that time, with the
-complete 69-test suite passing. This says nothing about an unassessed real
-candidate or organization-specific deployment controls.
+complete 70-test suite passing. Adopting organizations remain responsible for
+candidate-specific validation and deployment controls.
 
 ## 7. Required production controls outside this repository
 
@@ -117,17 +120,17 @@ The gate validates supplied bytes and deterministic relationships. It cannot est
 
 Those are explicit trust-boundary dependencies, not unfinished gate features. Adding attestations, OSCAL exchange, hosted identity, evaluation execution, deployment verification, or continuous monitoring belongs in a later release only when a real adopting system supplies the consumer and acceptance criteria.
 
-The next maturity milestone is a controlled pilot against a real, low-impact
-candidate with authenticated human reviewers. Findings from that pilot must be
-recorded and may require changes before any broader adoption claim.
+The next maturity milestone is documented feedback from controlled adoption
+with authenticated human reviewers. Those findings should inform subsequent
+releases and any broader adoption claims.
 
 ## 9. Release status
 
-- **Reference implementation:** Version 0.1.0, pre-release maturity.
+- **Reference implementation:** Version 0.1.0, designed for controlled adoption.
 - **Repository checks:** Passed as recorded in this file and updated release
   records.
-- **Real candidate experience:** None at the time of this record.
-- **Deployment of an actual system:** Not assessed or approved.
+- **Adoption requirement:** Validate candidate-specific evidence, policies, and
+  deployment controls before relying on a gate decision.
 - **ISO/IEC 42001 conformity or legal compliance:** Not assessed or certified.
 
 This file is a repository verification record, not a technical sign-off.
