@@ -4,11 +4,11 @@ The repository's own tests run from `.github/workflows/ci.yml`. The workflow in
 this directory is a separate template for adopters who want EvalSeal to guard an
 application deployment.
 
-Vendor the complete, versioned release at `.governance/evaluation-methodology/`, including `dist/` and `RELEASE_MANIFEST.sha256`. Protect that directory and the copied workflow with CODEOWNERS or equivalent rules that candidate authors cannot satisfy alone. Copy `github-actions.yml` into `.github/workflows/` and call it from the protected deployment workflow with organization-specific evidence and policy paths.
+Vendor the complete, versioned release at `.governance/evalseal/`, including `dist/` and `RELEASE_MANIFEST.sha256`. Protect that directory and the copied workflow with CODEOWNERS or equivalent rules that candidate authors cannot satisfy alone. Copy `github-actions.yml` into `.github/workflows/` and call it from the protected deployment workflow with organization-specific evidence and policy paths.
 
 The workflow does not install the adopting application as the gate. It verifies the vendored release manifest, installs the release wheel, and installs CPython 3.13 Linux dependencies from a hash-locked file. Its action dependencies are pinned to full official release commit SHAs, and workflow inputs pass through quoted environment variables rather than shell interpolation.
 
-Configure an `evaluation-governance` GitHub environment with the required production reviewers. Make deployment depend on this job and run only the protected default-branch version of the workflow. If a central governance repository hosts the workflow instead, invoke it at an immutable full commit SHA.
+Configure an `evalseal-governance` GitHub environment with the required production reviewers. Make deployment depend on this job and run only the protected default-branch version of the workflow. If a central governance repository hosts the workflow instead, invoke it at an immutable full commit SHA.
 
 The reference intentionally does not pass `--allow-conditional`. A conditional decision therefore stops automatic deployment unless the organization deliberately changes that policy.
 

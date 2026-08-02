@@ -3,9 +3,9 @@ requires = ["setuptools==83.0.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "evaluation-methodology-gate"
+name = "evalseal"
 version = "0.1.0"
-description = "Deterministic evidence-bound release gate for AI systems"
+description = "EvalSeal: deterministic evidence-bound release gate for AI systems"
 readme = "README.md"
 authors = [{ name = "Jonathan Asare" }]
 license = "Apache-2.0"
@@ -22,23 +22,23 @@ Changelog = "https://github.com/jonathanjasare/evalseal/blob/main/CHANGELOG.md"
 Security = "https://github.com/jonathanjasare/evalseal/security/policy"
 
 [project.scripts]
-evaluation-gate = "evaluation_gate.cli:main"
+evalseal = "evalseal.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools.package-data]
-evaluation_gate = ["schemas/*.json"]
+evalseal = ["schemas/*.json"]
 
 [tool.setuptools.data-files]
-"share/evaluation-methodology/evidence-pack-template" = [
+"share/evalseal/evidence-pack-template" = [
   "evidence-pack-template/*.json",
   "evidence-pack-template/README.md",
 ]
-"share/evaluation-methodology/evidence-pack-template/artifacts" = [
+"share/evalseal/evidence-pack-template/artifacts" = [
   "evidence-pack-template/artifacts/*",
 ]
-"share/evaluation-methodology/config" = [
+"share/evalseal/config" = [
   "config/governance.example.json",
   "config/tailoring.reference.json",
   "config/change-triggers.reference.json",

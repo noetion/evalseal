@@ -22,7 +22,7 @@ The highest risk-profile dimension is confidential data, so the reference policy
 ## Run it
 
 ```bash
-evaluation-gate gate \
+evalseal gate \
   --pack examples/fictional-support-assistant/evidence-pack \
   --governance examples/fictional-support-assistant/governance.json \
   --tailoring config/tailoring.reference.json \

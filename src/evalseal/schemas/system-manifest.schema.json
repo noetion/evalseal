@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.org/evaluation-methodology/schemas/system-manifest.schema.json",
+  "$id": "https://raw.githubusercontent.com/jonathanjasare/evalseal/main/src/evalseal/schemas/system-manifest.schema.json",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema_version", "candidate_id", "artifact_status", "name", "version", "code_revision", "environment", "intended_uses", "prohibited_uses", "jurisdictions", "models", "prompt_bundle_path", "prompt_bundle_sha256", "configuration_path", "configuration_sha256", "retrieval", "tools", "data_classes", "risk_profile", "declared_tier", "applicability", "rollback_target"],

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.org/evaluation-methodology/schemas/pack.schema.json",
+  "$id": "https://raw.githubusercontent.com/jonathanjasare/evalseal/main/src/evalseal/schemas/pack.schema.json",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema_version", "pack_id", "candidate_id", "mode", "artifact_status", "created_at", "owner_actor_id", "policy_bindings", "file_map"],

@@ -11,9 +11,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from unittest.mock import patch
 
-from evaluation_gate.cli import main as cli_main
-from evaluation_gate.engine import GateReport, _schema_bundle, assess_change, evaluate_pack
-from evaluation_gate.onboarding import refresh_hashes
+from evalseal.cli import main as cli_main
+from evalseal.engine import GateReport, _schema_bundle, assess_change, evaluate_pack
+from evalseal.onboarding import refresh_hashes
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -61,7 +61,7 @@ class GateTests(unittest.TestCase):
         schemas, _ = _schema_bundle()
         self.assertEqual(13, len(schemas))
 
-    @patch("evaluation_gate.cli.evaluate_pack")
+    @patch("evalseal.cli.evaluate_pack")
     def test_cli_omitted_as_of_uses_live_production_time(self, mocked_evaluate) -> None:
         mocked_evaluate.return_value = GateReport(
             "APPROVE", "PACK-PRODUCTION", "CAND-PRODUCTION-001", "tier_3",
@@ -74,7 +74,7 @@ class GateTests(unittest.TestCase):
         self.assertEqual(0, result)
         self.assertIsNone(mocked_evaluate.call_args.kwargs["as_of"])
 
-    @patch("evaluation_gate.cli.evaluate_pack")
+    @patch("evalseal.cli.evaluate_pack")
     def test_cli_explicit_as_of_is_passed_for_engine_rejection(self, mocked_evaluate) -> None:
         mocked_evaluate.return_value = GateReport(
             "REJECT", "PACK-PRODUCTION", "CAND-PRODUCTION-001", "tier_3",
@@ -800,7 +800,7 @@ class GateTests(unittest.TestCase):
             def now(cls, tz=None):
                 return AS_OF if tz is not None else AS_OF.replace(tzinfo=None)
 
-        with patch("evaluation_gate.engine.datetime", FixedDateTime):
+        with patch("evalseal.engine.datetime", FixedDateTime):
             report = evaluate_pack(
                 self.pack,
                 self.governance,

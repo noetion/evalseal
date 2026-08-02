@@ -18,15 +18,15 @@ accountable human decision; it supplies none of them.
 
 | Capability | Implemented evidence | Status |
 |---|---|---|
-| Machine-readable system, risk, control, case, evidence, finding, and decision records | 13 JSON Schema Draft 2020-12 contracts under `src/evaluation_gate/schemas/` | Implemented and executable |
+| Machine-readable system, risk, control, case, evidence, finding, and decision records | 13 JSON Schema Draft 2020-12 contracts under `src/evalseal/schemas/` | Implemented and executable |
 | Reference evidence pack | `evidence-pack-template/` contains the nine records and bound artifact layout expected from a candidate team | Implemented; deliberately non-approvable until populated |
-| Automated completeness and freshness validation | `evaluation_gate.engine` checks structure, identities, hashes, evidence age and validity, failed-result precedence, findings, control verification, risk acceptance, authority, chronology, reassessment, and review expiry | Implemented and tested |
-| Release-gate command and CI workflow | `evaluation-gate` returns `APPROVE`, `CONDITIONAL`, or `REJECT`; `ci/github-actions.yml` verifies the release manifest, installs hash-locked dependencies and the wheel, runs preflight, and enforces the final decision | Implemented; adopting organization must protect the workflow and environment |
+| Automated completeness and freshness validation | `evalseal.engine` checks structure, identities, hashes, evidence age and validity, failed-result precedence, findings, control verification, risk acceptance, authority, chronology, reassessment, and review expiry | Implemented and tested |
+| Release-gate command and CI workflow | `evalseal` returns `APPROVE`, `CONDITIONAL`, or `REJECT`; `ci/github-actions.yml` verifies the release manifest, installs hash-locked dependencies and the wheel, runs preflight, and enforces the final decision | Implemented; adopting organization must protect the workflow and environment |
 | End-to-end worked example | `examples/fictional-support-assistant/` contains completed Tier 3 records and reports | Implemented; returns `SIMULATED_APPROVE`, exit 3, and never deployment authority |
 | Risk-scaled tailoring | `config/tailoring.reference.json` maps impact, autonomy, data sensitivity, and exposure to evidence and approval requirements | Implemented as reference policy; organization adoption is required |
 | Formal change triggers | `config/change-triggers.reference.json` defines documentation, targeted, full, and incident reassessment requirements and requires fresh approval for every final candidate | Implemented as reference policy; protected change evidence is required |
 | Organization-specific governance | `config/governance.example.json` defines actors, roles, authority limits, tolerance, exception rules, verifier roles, separation rules, and resource limits | Implemented as a schema and example; real identities and authority are intentionally not supplied |
-| Onboarding and hash automation | `evaluation-gate init` creates a non-approvable Tier 1 starter; `evaluation-gate hash` calculates policy, artifact, and optional frozen-decision bindings | Implemented and tested; hashing establishes byte integrity, not evidence truth |
+| Onboarding and hash automation | `evalseal init` creates a non-approvable Tier 1 starter; `evalseal hash` calculates policy, artifact, and optional frozen-decision bindings | Implemented and tested; hashing establishes byte integrity, not evidence truth |
 
 ## Architecture and alternative analysis
 
@@ -67,9 +67,9 @@ The following checks completed successfully, most recently on 2026-08-02:
 
 The final wheel is:
 
-`dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl`
+`dist/evalseal-0.1.0-py3-none-any.whl`
 
-SHA-256: `6d8ec6b75d0cf725450327b999ba2d0b942879d33e3de6b2297c09cd6a473ef9`
+SHA-256: `f5c8357136abf42eee1c93f6aeb2417ff4afa4fd96bb068412884eed69420ea2`
 
 The complete release-file checksums are in `RELEASE_MANIFEST.sha256`. The manifest includes these notes and the wheel but excludes itself.
 
@@ -79,7 +79,7 @@ Before relying on an `APPROVE` result, the adopting organization must:
 
 1. Replace every example/reference policy with approved organization-owned policy files and authenticated actor identities.
 2. Generate evidence through protected systems and preserve the relationship between reports and the exact candidate bytes.
-3. Protect the release directory, policy files, approval records, workflow, default branch, and `evaluation-governance` environment from unilateral candidate-author changes.
+3. Protect the release directory, policy files, approval records, workflow, default branch, and `evalseal-governance` environment from unilateral candidate-author changes.
 4. Make deployment consume the exact approved candidate revision, prompt/configuration hashes, model identifiers, retrieval versions, and policy bindings.
 5. Preserve the JSON gate report and deployment provenance, then monitor, respond to incidents, and reassess on configured triggers.
 6. Obtain current legal, privacy, security, and standards review where the system's context requires it.

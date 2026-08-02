@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.org/evaluation-methodology/schemas/change-policy.schema.json",
+  "$id": "https://raw.githubusercontent.com/jonathanjasare/evalseal/main/src/evalseal/schemas/change-policy.schema.json",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema_version", "policy_id", "version", "status", "effective_at", "approved_at", "approved_by_actor_id", "next_review_at", "triggers"],

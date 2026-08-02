@@ -15,6 +15,11 @@ All notable changes to EvalSeal are recorded here.
 - A non-approvable starter template and an end-to-end fictional example.
 - Hash-locked Linux CPython 3.13 dependencies and protected workflow template.
 
+### Changed
+
+- Unified the repository, Python distribution, import package, installed
+  command, wheel, documentation, and CI identifiers under the EvalSeal name.
+
 ### Security
 
 - Final approvals bind the exact decision inputs and fail closed after any

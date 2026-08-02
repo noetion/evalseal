@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.org/evaluation-methodology/schemas/evaluation-cases.schema.json",
+  "$id": "https://raw.githubusercontent.com/jonathanjasare/evalseal/main/src/evalseal/schemas/evaluation-cases.schema.json",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema_version", "candidate_id", "artifact_status", "evaluation_set_id", "version", "dataset_path", "dataset_sha256", "cases"],
