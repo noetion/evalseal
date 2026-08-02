@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.org/evaluation-methodology/schemas/risk-register.schema.json",
+  "$id": "https://raw.githubusercontent.com/jonathanjasare/evalseal/main/src/evalseal/schemas/risk-register.schema.json",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema_version", "candidate_id", "artifact_status", "risks"],

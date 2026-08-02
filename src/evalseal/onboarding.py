@@ -33,17 +33,17 @@ def _template_root() -> Path:
         return source_root
 
     try:
-        installed = distribution("evaluation-methodology-gate")
+        installed = distribution("evalseal")
     except PackageNotFoundError:
         installed = None
     if installed is not None:
         distribution_root = Path(
-            installed.locate_file("share/evaluation-methodology")
+            installed.locate_file("share/evalseal")
         ).resolve()
         if (distribution_root / "evidence-pack-template").is_dir():
             return distribution_root
 
-    installed_root = Path(sysconfig.get_path("data")) / "share" / "evaluation-methodology"
+    installed_root = Path(sysconfig.get_path("data")) / "share" / "evalseal"
     if (installed_root / "evidence-pack-template").is_dir():
         return installed_root
 

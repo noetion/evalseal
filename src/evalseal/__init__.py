@@ -1,4 +1,4 @@
-"""Operational release gate for the evaluation methodology."""
+"""EvalSeal's deterministic evidence-bound release gate."""
 
 from .engine import GateReport, evaluate_pack
 

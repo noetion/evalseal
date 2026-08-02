@@ -19,9 +19,9 @@ decision chronology.
 ```bash
 git clone https://github.com/jonathanjasare/evalseal
 cd evalseal
-python -m pip install dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl
+python -m pip install dist/evalseal-0.1.0-py3-none-any.whl
 
-evaluation-gate gate \
+evalseal gate \
   --pack examples/fictional-support-assistant/evidence-pack \
   --governance examples/fictional-support-assistant/governance.json \
   --tailoring config/tailoring.reference.json \
@@ -34,8 +34,6 @@ Expected: `Decision: SIMULATED_APPROVE`, `Authorizes deployment: false`, exit
 3. Without `--allow-fictional`, the example returns `REJECT`; it cannot
 authorize deployment.
 
-EvalSeal is the project name. The Python distribution is currently
-`evaluation-methodology-gate`, and it installs the `evaluation-gate` command.
 The wheel is committed so protected CI can verify and install the exact release
 artifact without rebuilding source. Attach that same wheel to the corresponding
 GitHub Release.
@@ -56,8 +54,8 @@ The method must be tailored to the system's intended purpose, affected people, a
 ## Start an assessment
 
 ```bash
-python -m pip install dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl
-evaluation-gate init my-assessment --candidate-id CAND-MY-SYSTEM-001 --name "My system"
+python -m pip install dist/evalseal-0.1.0-py3-none-any.whl
+evalseal init my-assessment --candidate-id CAND-MY-SYSTEM-001 --name "My system"
 ```
 
 A plain install resolves the pinned `jsonschema[format]` dependency from PyPI. Protected pipelines should instead use the hash-locked install path in the [operating guide](docs/OPERATING_GUIDE.md).
@@ -110,7 +108,7 @@ Terms such as `active`, `complete`, `compliant`, and `production-ready` must not
 | [docs/CHANGE_TRIGGERS.md](docs/CHANGE_TRIGGERS.md) | Partial, full, incident, and documentation reassessment rules |
 | [docs/GOVERNANCE_SETUP.md](docs/GOVERNANCE_SETUP.md) | Real roles, authority limits, identity boundary, and separation of duties |
 | [evidence-pack-template/](evidence-pack-template/README.md) | Copyable production evidence-pack structure |
-| [machine-readable schemas](src/evaluation_gate/schemas/common.schema.json) | JSON Schema Draft 2020-12 contracts for policies and evidence |
+| [machine-readable schemas](src/evalseal/schemas/common.schema.json) | JSON Schema Draft 2020-12 contracts for policies and evidence |
 | [fictional worked example](examples/fictional-support-assistant/README.md) | Completed Tier 3 example that demonstrates the whole decision flow |
 | [docs/REFERENCE_EXAMPLE.md](docs/REFERENCE_EXAMPLE.md) | Walkthrough and expected output for the fictional example |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Branch naming, pull-request content, and review expectations |

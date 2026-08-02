@@ -1,5 +1,5 @@
 # Adopter template: copy this reusable workflow into the protected application repository.
-name: LLM evaluation release gate
+name: EvalSeal release gate
 
 on:
   workflow_call:
@@ -24,28 +24,28 @@ jobs:
   fictional-example-regression:
     runs-on: ubuntu-latest
     env:
-      GATE_ROOT: .governance/evaluation-methodology
+      EVALSEAL_ROOT: .governance/evalseal
       PIP_DISABLE_PIP_VERSION_CHECK: "1"
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
           python-version: "3.13"
-      - name: Verify the protected gate release
-        working-directory: ${{ env.GATE_ROOT }}
+      - name: Verify the protected EvalSeal release
+        working-directory: ${{ env.EVALSEAL_ROOT }}
         run: sha256sum --check RELEASE_MANIFEST.sha256
-      - name: Install the hash-locked release gate
+      - name: Install the hash-locked EvalSeal release
         run: |
-          python -m pip install --require-hashes --only-binary=:all: -r "$GATE_ROOT/ci/requirements-linux-py313.lock"
-          python -m pip install --no-deps "$GATE_ROOT/dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl"
+          python -m pip install --require-hashes --only-binary=:all: -r "$EVALSEAL_ROOT/ci/requirements-linux-py313.lock"
+          python -m pip install --no-deps "$EVALSEAL_ROOT/dist/evalseal-0.1.0-py3-none-any.whl"
       - name: Assert the fictional pack remains internally consistent
         run: |
           set +e
-          evaluation-gate gate \
-            --pack "$GATE_ROOT/examples/fictional-support-assistant/evidence-pack" \
-            --governance "$GATE_ROOT/examples/fictional-support-assistant/governance.json" \
-            --tailoring "$GATE_ROOT/config/tailoring.reference.json" \
-            --change-policy "$GATE_ROOT/config/change-triggers.reference.json" \
+          evalseal gate \
+            --pack "$EVALSEAL_ROOT/examples/fictional-support-assistant/evidence-pack" \
+            --governance "$EVALSEAL_ROOT/examples/fictional-support-assistant/governance.json" \
+            --tailoring "$EVALSEAL_ROOT/config/tailoring.reference.json" \
+            --change-policy "$EVALSEAL_ROOT/config/change-triggers.reference.json" \
             --allow-fictional \
             --as-of "2026-07-31T12:30:00Z" \
             --output fictional-example-report.json
@@ -62,11 +62,11 @@ jobs:
           if-no-files-found: warn
           retention-days: 90
 
-  release-gate:
+  evalseal-gate:
     runs-on: ubuntu-latest
-    environment: evaluation-governance
+    environment: evalseal-governance
     env:
-      GATE_ROOT: .governance/evaluation-methodology
+      EVALSEAL_ROOT: .governance/evalseal
       PACK_PATH: ${{ inputs.pack }}
       GOVERNANCE_PATH: ${{ inputs.governance }}
       TAILORING_PATH: ${{ inputs.tailoring }}
@@ -77,16 +77,16 @@ jobs:
       - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
           python-version: "3.13"
-      - name: Verify the protected gate release
-        working-directory: ${{ env.GATE_ROOT }}
+      - name: Verify the protected EvalSeal release
+        working-directory: ${{ env.EVALSEAL_ROOT }}
         run: sha256sum --check RELEASE_MANIFEST.sha256
-      - name: Install the hash-locked release gate
+      - name: Install the hash-locked EvalSeal release
         run: |
-          python -m pip install --require-hashes --only-binary=:all: -r "$GATE_ROOT/ci/requirements-linux-py313.lock"
-          python -m pip install --no-deps "$GATE_ROOT/dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl"
+          python -m pip install --require-hashes --only-binary=:all: -r "$EVALSEAL_ROOT/ci/requirements-linux-py313.lock"
+          python -m pip install --no-deps "$EVALSEAL_ROOT/dist/evalseal-0.1.0-py3-none-any.whl"
       - name: Preflight the evidence package
         run: |
-          evaluation-gate preflight \
+          evalseal preflight \
             --pack "$PACK_PATH" \
             --governance "$GOVERNANCE_PATH" \
             --tailoring "$TAILORING_PATH" \
@@ -94,7 +94,7 @@ jobs:
             --output preflight-report.json
       - name: Enforce the accountable final decision
         run: |
-          evaluation-gate gate \
+          evalseal gate \
             --pack "$PACK_PATH" \
             --governance "$GOVERNANCE_PATH" \
             --tailoring "$TAILORING_PATH" \
@@ -104,7 +104,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
-          name: evaluation-release-gate
+          name: evalseal-release-gate
           path: |
             preflight-report.json
             release-gate-report.json

@@ -7,7 +7,7 @@ same evidence, authority, freshness, and candidate-binding rules.
 ## 1. Create the workspace
 
 ```bash
-evaluation-gate init my-assessment \
+evalseal init my-assessment \
   --candidate-id CAND-MY-SYSTEM-001 \
   --name "My system"
 ```
@@ -60,7 +60,7 @@ exposure. The computed tier overrides an understated declaration.
 After editing artifacts and records, refresh the declared hashes:
 
 ```bash
-evaluation-gate hash \
+evalseal hash \
   --pack my-assessment/evidence/current \
   --governance my-assessment/governance/governance.json \
   --tailoring my-assessment/governance/tailoring.json \
@@ -78,7 +78,7 @@ eligibility, freeze the evidence inputs. While `approval-decision.json` is still
 `draft`, bind the decision record to those exact files:
 
 ```bash
-evaluation-gate hash \
+evalseal hash \
   --pack my-assessment/evidence/current \
   --governance my-assessment/governance/governance.json \
   --tailoring my-assessment/governance/tailoring.json \

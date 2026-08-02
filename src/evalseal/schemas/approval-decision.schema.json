@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.org/evaluation-methodology/schemas/approval-decision.schema.json",
+  "$id": "https://raw.githubusercontent.com/jonathanjasare/evalseal/main/src/evalseal/schemas/approval-decision.schema.json",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema_version", "candidate_id", "artifact_status", "decision", "decided_at", "approvers", "input_hashes", "evidence_ids", "residual_risk_ids", "conditions", "rollback_target", "next_review_at"],

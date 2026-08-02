@@ -63,8 +63,8 @@ def _write_change_report(report: dict[str, object], output: str | None, output_f
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="evaluation-gate",
-        description="Validate a methodology evidence pack and compute its release decision.",
+        prog="evalseal",
+        description="Validate an EvalSeal evidence pack and compute its release decision.",
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
@@ -152,7 +152,7 @@ def main(argv: list[str] | None = None) -> int:
         _write_change_report(payload, args.output, args.format)
         return 0 if payload["decision"] == "VALID" else 1
     except (OSError, ValueError) as exc:
-        print(f"evaluation-gate: {exc}", file=sys.stderr)
+        print(f"evalseal: {exc}", file=sys.stderr)
         return 1
 
 

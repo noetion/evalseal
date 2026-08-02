@@ -26,15 +26,15 @@ It does not execute model evaluations, prove that a report is truthful, provide 
 Requires Python 3.11 or newer.
 
 ```bash
-python -m pip install dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl
-evaluation-gate --help
+python -m pip install dist/evalseal-0.1.0-py3-none-any.whl
+evalseal --help
 ```
 
 The only direct runtime dependency is the pinned `jsonschema[format]` package; a plain install resolves it from PyPI. The schemas use JSON Schema Draft 2020-12. A protected environment must not rely on a plain PyPI resolution: install the hash-locked transitive dependency set first (`ci/requirements-linux-py313.lock` for the released Linux CPython 3.13 path), then install the verified wheel under `dist/` with `--no-deps`:
 
 ```bash
 python -m pip install --require-hashes --only-binary=:all: -r ci/requirements-linux-py313.lock
-python -m pip install --no-deps dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl
+python -m pip install --no-deps dist/evalseal-0.1.0-py3-none-any.whl
 ```
 
 ## One-time organizational setup
@@ -54,7 +54,7 @@ See [GOVERNANCE_SETUP.md](GOVERNANCE_SETUP.md) and [TAILORING_GUIDE.md](TAILORIN
 For a new assessment, scaffold the policies and Tier 1 starter pack first:
 
 ```bash
-evaluation-gate init my-assessment \
+evalseal init my-assessment \
   --candidate-id CAND-MY-SYSTEM-001 \
   --name "My system"
 ```
@@ -77,7 +77,7 @@ Record SHA-256 hashes for:
 
 The gate rejects a changed file when its recorded hash is not updated. Policy updates require a new binding and accountable review. After preflight, freeze `pack.json`, the manifest, risk register, controls, evaluation cases, evidence index, findings, and change assessment. The final human approval must record the exact hash of each in `approval-decision.json`; any later edit invalidates the approval.
 
-Use `evaluation-gate hash` to calculate these fields instead of editing digest
+Use `evalseal hash` to calculate these fields instead of editing digest
 strings manually. Run it without `--approval` while assembling evidence. After
 all inputs are frozen but while the decision record is still `draft`, run it
 once with `--approval`. The authorized human then reviews those bound inputs and
@@ -88,7 +88,7 @@ truthful, sufficient, or independently verified.
 ### 3. Assess the change
 
 ```bash
-evaluation-gate assess-change \
+evalseal assess-change \
   --assessment evidence/current/change-assessment.json \
   --policy governance/change-triggers.json \
   --format json
@@ -99,7 +99,7 @@ The declared scope must be at least as broad as the strictest applicable trigger
 ### 4. Run preflight before approval
 
 ```bash
-evaluation-gate preflight \
+evalseal preflight \
   --pack evidence/current \
   --governance governance/governance.json \
   --tailoring governance/tailoring.json \
@@ -125,7 +125,7 @@ The identity and approval record must come from a protected process. A name type
 ### 6. Run the final gate
 
 ```bash
-evaluation-gate gate \
+evalseal gate \
   --pack evidence/current \
   --governance governance/governance.json \
   --tailoring governance/tailoring.json \

@@ -46,7 +46,7 @@ Maintain a traceability table showing which cases cover each requirement and mat
 
 ## 4. Case schema
 
-Use JSON, YAML, or a database with schema validation. The operational release includes a machine-readable [evaluation-case schema](src/evaluation_gate/schemas/evaluation-cases.schema.json) and a hash-bound dataset path. Required fields:
+Use JSON, YAML, or a database with schema validation. The operational release includes a machine-readable [evaluation-case schema](src/evalseal/schemas/evaluation-cases.schema.json) and a hash-bound dataset path. Required fields:
 
 | Field | Purpose |
 |---|---|
