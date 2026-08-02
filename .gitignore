@@ -7,3 +7,12 @@ build/
 .pytest_cache/
 .venv/
 dist-local/
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+.idea/
+.vscode/
+.mypy_cache/
+.ruff_cache/

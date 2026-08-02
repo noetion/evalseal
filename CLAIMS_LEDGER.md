@@ -1,31 +1,20 @@
-# Historical publication review record
+# Claims ledger
 
-> Historical content review performed before the executable reference
-> implementation was added. It is retained as a claim-correction ledger, not as
-> independent assurance, certification, or current production authorization.
+**Reviewed:** 2026-07-31
 
-**Audit date:** 2026-07-31  
-**Scope:** All Markdown files in this repository and the external claims they contain  
-**Historical result:** The reviewed draft was considered suitable for publication as a reference methodology.
+**Scope:** All Markdown files in this repository and the external claims they contain
 
-**Assessment scope:** Publication accuracy and internal consistency. Candidate-specific production authorization is outside this historical review.
+**Purpose:** Preserve the factual corrections applied before publication.
 
-## 1. Decision basis
+## Decision basis
 
 The methodology has been rewritten to remove or qualify unsupported universal thresholds, inaccurate legal claims, invented framework priorities, brittle framework counts, and security guidance that relied too heavily on prompt behavior. External factual claims in the revised publication are linked to primary or authoritative sources in [SOURCE_REGISTER.md](SOURCE_REGISTER.md).
 
-This approval means the documents are suitable for use as a risk-based evaluation reference and template set. It does not mean:
+The ledger distinguishes external facts, internal design choices, and system-specific claims that require evidence. Conformity, legal compliance, and deployment decisions remain specific to the assessed organization and system.
 
-- any LLM application passed the methodology;
-- any listed control is implemented;
-- any example result is real;
-- the repository conforms to ISO/IEC 42001;
-- any system complies with the EU AI Act, UK law, US law, or sector rules; or
-- production deployment is authorized.
+## Material reviewed
 
-## 2. Evidence available
-
-Repository inventory at audit start:
+Repository inventory at review start:
 
 - `README.md`
 - `01-framework.md`
@@ -35,36 +24,11 @@ Repository inventory at audit start:
 - `05-security-testing.md`
 - `06-bias-and-fairness.md`
 
-The supplied material was a methodology corpus rather than a candidate evidence pack, so this audit evaluated publication accuracy and internal consistency rather than candidate-specific operational effectiveness.
+The supplied material was a methodology corpus rather than a candidate evidence pack, so the review focused on publication accuracy and internal consistency.
 
-## 3. Implemented facts versus intentions
+## Claims ledger
 
-| Component | What exists in this repository | Evidence status |
-|---|---|---|
-| C1 Threat model | Template and method only | Proposed guidance; no system implementation evidence |
-| C2 Risk register | Template only | Proposed guidance; no populated system register |
-| C3 Evaluation set | Schema and examples only | Proposed guidance; no dataset |
-| C4 Measurement plan | Metric and decision guidance only | Proposed guidance; no system thresholds or results |
-| C5 Retrieval evaluation | Method only | Not applicable to this documentation repository; no RAG system supplied |
-| C6 Model grader | Protocol and prompt pattern only | No grader, calibration set, or validation result |
-| C7 Fairness assessment | Method and report template only | No system, data, affected-group study, or result |
-| C8 Abstention policy | Measurement guidance only | No product policy or test evidence |
-| C9 Injection suite | Coverage guidance only | No suite or execution result |
-| C10 Red-team protocol | Rules and template only | No authorization, engagement, finding, or retest |
-| C11 Output/tool security | Control guidance only | No code, configuration, or verification |
-| C12 System card | Required sections only | No real system card |
-| C13 Governance map | Schema and hypothetical row only | No owners or real evidence |
-| C14 Audit/evidence records | Schema guidance only | No logging implementation or records |
-| C15 Release gate | Decision model and sample record only | No pipeline or executed gate |
-| C16 Monitoring | Indicator guidance only | No telemetry, thresholds, alert, or dashboard |
-| C17 Feedback loop | Process guidance only | No production failures or case updates |
-| C18 Incident response | Process and severity framework only | No deployed mechanism or exercise |
-
-Any future claim that one of these is implemented must link to evidence for the exact assessed version. Any claim that it is verified must also link to a current test or review result.
-
-## 4. Claim audit ledger
-
-The ledger covers the material externally verifiable, governance, strategic, legal, statistical, tool, and technical claims in the pre-audit publication. Purely normative internal design choices are retained only when labeled as policy or examples.
+The ledger covers the material externally verifiable, governance, strategic, legal, statistical, tool, and technical claims in the earlier publication. Purely normative internal design choices are retained only when labeled as policy or examples.
 
 ### Framework and standards
 
@@ -78,7 +42,7 @@ The ledger covers the material externally verifiable, governance, strategic, leg
 | F06 | NIST mappings establish compliance | False implication | Mappings labeled interpretive; NIST is voluntary and not a checklist/certification |
 | F07 | OWASP assigns Critical/High/Medium priorities to individual 2025 risks | Inaccurate | All custom priorities removed; local severity must come from the application |
 | F08 | OWASP 2025 risk names LLM01-LLM10 | Verified | Retained and linked to official 2025 list |
-| F09 | MITRE ATLAS had 84 techniques as of 2026, per the prior audit | Any fixed count is currently obsolete | ATLAS releases monthly and its counts change; the methodology cites stable tactic and technique identifiers and omits brittle counts |
+| F09 | MITRE ATLAS had 84 techniques as of 2026, per the earlier review | Any fixed count is currently obsolete | ATLAS releases monthly and its counts change; the methodology cites stable tactic and technique identifiers and omits brittle counts |
 | F10 | ISO/IEC 42001 provides exact structures for model cards, audit trails, and the draft's Annex mappings | Not established from cited evidence | Limited to verified AIMS scope; exact mapping requires licensed standard and qualified review |
 | F11 | ISO/IEC 42001 has exactly 38 Annex A controls | Commonly reported but not independently verified from the accessible official catalog | Count removed; a licensed copy must be used for any exact Annex A statement or mapping |
 | F12 | The methodology “satisfies” EU AI Act requirements | Inaccurate compliance claim | Replaced with applicability-specific support language and no conformity claim |
@@ -188,7 +152,7 @@ The ledger covers the material externally verifiable, governance, strategic, leg
 | B11 | AIF360 has a stable “70+ metrics” capability claim | Brittle marketing/count claim | Removed; retained only verified general library scope |
 | B12 | Google What-If Tool should be recommended as an active standard tool | Current support not established | Removed from the core tooling list |
 
-## 5. Conditions on reuse
+## Conditions on reuse
 
 The review conclusions remain applicable while all of the following hold:
 
@@ -198,30 +162,15 @@ The review conclusions remain applicable while all of the following hold:
 4. Legal applicability is reviewed against current law for each system.
 5. External sources are reviewed by 2027-01-31 or earlier if NIST AI RMF 1.0 is replaced, OWASP or MITRE materially changes, the EU AI Act is amended again, or relevant law/guidance changes.
 
-## 6. Verification record
+## Verification record
 
-Verification completed on 2026-07-31:
+For the 2026-07-31 methodology corpus, verification completed as follows:
 
-- all nine Markdown artifacts were read after the final edits;
-- 92 material claim families from the pre-audit publication and supplied prior review were adjudicated in the ledger;
+- all nine Markdown artifacts in that corpus were read after the final edits;
+- 92 material claim families from the earlier publication and supplied prior review were adjudicated in the ledger;
 - all 106 Markdown link references were parsed, covering 39 unique external destinations, with no missing local targets;
 - every external source used by the seven core methodology documents appears in [SOURCE_REGISTER.md](SOURCE_REGISTER.md);
 - primary or authoritative sources were reviewed for each standards, legal, statistical, research, and tool claim family; canonical official index or search results were used where a site rejected automated direct access;
 - every fenced code block is balanced and every contiguous Markdown table has a consistent column count;
 - all files decode as strict UTF-8, with no detected mojibake, unresolved publication markers, or em dashes; and
-- a fresh second-pass review found no blocking publication issue. It confirmed the remaining scope boundary: this is documentation assurance, not implementation or production-system assurance.
-
-The historical embedded hash table was removed after later edits made five of
-its eight entries stale. Current release bytes are recorded only in
-`RELEASE_MANIFEST.sha256`, which is regenerated as part of release preparation.
-
-## 7. Review status
-
-- The claim-correction ledger remains useful as historical review evidence.
-- It does not approve deployment of an actual system.
-- It does not establish ISO/IEC 42001 conformity or legal compliance.
-- No human legal reviewer, accredited assessor, or independent technical
-  reviewer signed this review.
-
-Publication and production authority remain with the accountable repository and
-system owners.
+- a fresh second pass found no blocking publication issue and confirmed that system-specific implementation claims require system-specific evidence.

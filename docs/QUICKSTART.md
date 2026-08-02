@@ -6,9 +6,9 @@ same evidence, authority, freshness, and candidate-binding rules.
 
 ## 1. Create the workspace
 
-```powershell
-evaluation-gate init my-assessment `
-  --candidate-id CAND-MY-SYSTEM-001 `
+```bash
+evaluation-gate init my-assessment \
+  --candidate-id CAND-MY-SYSTEM-001 \
   --name "My system"
 ```
 
@@ -59,11 +59,11 @@ exposure. The computed tier overrides an understated declaration.
 
 After editing artifacts and records, refresh the declared hashes:
 
-```powershell
-evaluation-gate hash `
-  --pack my-assessment/evidence/current `
-  --governance my-assessment/governance/governance.json `
-  --tailoring my-assessment/governance/tailoring.json `
+```bash
+evaluation-gate hash \
+  --pack my-assessment/evidence/current \
+  --governance my-assessment/governance/governance.json \
+  --tailoring my-assessment/governance/tailoring.json \
   --change-policy my-assessment/governance/change-triggers.json
 ```
 
@@ -77,12 +77,12 @@ Run preflight using the command in the operating guide. When it reports
 eligibility, freeze the evidence inputs. While `approval-decision.json` is still
 `draft`, bind the decision record to those exact files:
 
-```powershell
-evaluation-gate hash `
-  --pack my-assessment/evidence/current `
-  --governance my-assessment/governance/governance.json `
-  --tailoring my-assessment/governance/tailoring.json `
-  --change-policy my-assessment/governance/change-triggers.json `
+```bash
+evaluation-gate hash \
+  --pack my-assessment/evidence/current \
+  --governance my-assessment/governance/governance.json \
+  --tailoring my-assessment/governance/tailoring.json \
+  --change-policy my-assessment/governance/change-triggers.json \
   --approval
 ```
 

@@ -21,13 +21,13 @@ The highest risk-profile dimension is confidential data, so the reference policy
 
 ## Run it
 
-```powershell
-evaluation-gate gate `
-  --pack examples/fictional-support-assistant/evidence-pack `
-  --governance examples/fictional-support-assistant/governance.json `
-  --tailoring config/tailoring.reference.json `
-  --change-policy config/change-triggers.reference.json `
-  --as-of 2026-07-31T12:30:00Z `
+```bash
+evaluation-gate gate \
+  --pack examples/fictional-support-assistant/evidence-pack \
+  --governance examples/fictional-support-assistant/governance.json \
+  --tailoring config/tailoring.reference.json \
+  --change-policy config/change-triggers.reference.json \
+  --as-of 2026-07-31T12:30:00Z \
   --allow-fictional
 ```
 

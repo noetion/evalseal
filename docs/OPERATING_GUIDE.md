@@ -25,14 +25,14 @@ It does not execute model evaluations, prove that a report is truthful, provide 
 
 Requires Python 3.11 or newer.
 
-```powershell
+```bash
 python -m pip install dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl
 evaluation-gate --help
 ```
 
 The only direct runtime dependency is the pinned `jsonschema[format]` package; a plain install resolves it from PyPI. The schemas use JSON Schema Draft 2020-12. A protected environment must not rely on a plain PyPI resolution: install the hash-locked transitive dependency set first (`ci/requirements-linux-py313.lock` for the released Linux CPython 3.13 path), then install the verified wheel under `dist/` with `--no-deps`:
 
-```powershell
+```bash
 python -m pip install --require-hashes --only-binary=:all: -r ci/requirements-linux-py313.lock
 python -m pip install --no-deps dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl
 ```
@@ -53,9 +53,9 @@ See [GOVERNANCE_SETUP.md](GOVERNANCE_SETUP.md) and [TAILORING_GUIDE.md](TAILORIN
 
 For a new assessment, scaffold the policies and Tier 1 starter pack first:
 
-```powershell
-evaluation-gate init my-assessment `
-  --candidate-id CAND-MY-SYSTEM-001 `
+```bash
+evaluation-gate init my-assessment \
+  --candidate-id CAND-MY-SYSTEM-001 \
   --name "My system"
 ```
 
@@ -87,10 +87,10 @@ truthful, sufficient, or independently verified.
 
 ### 3. Assess the change
 
-```powershell
-evaluation-gate assess-change `
-  --assessment evidence/current/change-assessment.json `
-  --policy governance/change-triggers.json `
+```bash
+evaluation-gate assess-change \
+  --assessment evidence/current/change-assessment.json \
+  --policy governance/change-triggers.json \
   --format json
 ```
 
@@ -98,12 +98,12 @@ The declared scope must be at least as broad as the strictest applicable trigger
 
 ### 4. Run preflight before approval
 
-```powershell
-evaluation-gate preflight `
-  --pack evidence/current `
-  --governance governance/governance.json `
-  --tailoring governance/tailoring.json `
-  --change-policy governance/change-triggers.json `
+```bash
+evaluation-gate preflight \
+  --pack evidence/current \
+  --governance governance/governance.json \
+  --tailoring governance/tailoring.json \
+  --change-policy governance/change-triggers.json \
   --output artifacts/preflight-report.json
 ```
 
@@ -111,7 +111,8 @@ Preflight returns:
 
 - `ELIGIBLE` when evidence is complete and no release conditions are needed;
 - `ELIGIBLE_WITH_CONDITIONS` when only non-blocking, bounded findings remain; or
-- `NEEDS_ACTION` when a blocking issue remains.
+- `NEEDS_ACTION` when a fully loaded pack has blocking issues that can be corrected before approval; or
+- `REJECT` when an early fail-closed check prevents preflight, such as invalid JSON, schema failure, or an unsafe or missing path.
 
 Preflight deliberately does not grant production approval.
 
@@ -123,12 +124,12 @@ The identity and approval record must come from a protected process. A name type
 
 ### 6. Run the final gate
 
-```powershell
-evaluation-gate gate `
-  --pack evidence/current `
-  --governance governance/governance.json `
-  --tailoring governance/tailoring.json `
-  --change-policy governance/change-triggers.json `
+```bash
+evaluation-gate gate \
+  --pack evidence/current \
+  --governance governance/governance.json \
+  --tailoring governance/tailoring.json \
+  --change-policy governance/change-triggers.json \
   --output artifacts/release-gate-report.json
 ```
 

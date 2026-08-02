@@ -1,3 +1,4 @@
+# Adopter template: copy this reusable workflow into the protected application repository.
 name: LLM evaluation release gate
 
 on:
