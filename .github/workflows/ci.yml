@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.13"]
+    env:
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+      PYTHON_VERSION: ${{ matrix.python-version }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Verify the committed release
+        run: sha256sum --check RELEASE_MANIFEST.sha256
+      - name: Install EvalSeal
+        run: |
+          if [ "$PYTHON_VERSION" = "3.13" ]; then
+            python -m pip install --require-hashes --only-binary=:all: -r ci/requirements-linux-py313.lock
+            python -m pip install --no-deps dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl
+          else
+            python -m pip install dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl
+          fi
+      - name: Run the test suite
+        run: python -m unittest discover -s tests -v
+      - name: Verify the fictional example
+        run: |
+          set +e
+          evaluation-gate gate \
+            --pack examples/fictional-support-assistant/evidence-pack \
+            --governance examples/fictional-support-assistant/governance.json \
+            --tailoring config/tailoring.reference.json \
+            --change-policy config/change-triggers.reference.json \
+            --as-of 2026-07-31T12:30:00Z \
+            --allow-fictional \
+            --output fictional-example-report.json
+          status=$?
+          set -e
+          test "$status" -eq 3
+          python -c 'import json; report = json.load(open("fictional-example-report.json", encoding="utf-8")); assert report["decision"] == "SIMULATED_APPROVE"; assert report["authorizes_deployment"] is False; assert report["blocking_issues"] == []'

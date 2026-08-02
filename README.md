@@ -1,16 +1,48 @@
 # EvalSeal
 
+[![CI](https://github.com/jonathanjasare/evalseal/actions/workflows/ci.yml/badge.svg)](https://github.com/jonathanjasare/evalseal/actions/workflows/ci.yml)
+
 **Evidence-bound release decisions for AI systems.**
 
-**Release status:** EvalSeal 0.1.0 is a reference implementation designed for controlled adoption. Organizations should validate it against their own systems, policies, and deployment controls before relying on it as a production gate.
+EvalSeal is a deterministic release gate. It takes an evidence pack containing
+the risks, controls, evaluation cases, findings, and approval decision for an AI
+release candidate, combines it with organization-owned governance, tailoring,
+and change-trigger policies, and returns `APPROVE`, `CONDITIONAL`, or `REJECT`
+with a machine-readable reason for every blocking issue. It validates 13 schemas
+and enforces exact artifact hashes, evidence freshness, approval authority, and
+decision chronology.
 
 **Trust boundary:** The gate validates supplied records, file integrity, policy rules, and recorded authority. It cannot determine whether a report is truthful or whether a test actually reached the intended system. Its value is procedural evidence binding and fail-closed release control, not independent AI assurance.
 
-**System status:** The repository contains an executable gate and a complete fictional example, but no real LLM application, evaluation result, deployed control, monitoring system, or production approval.
+## Try it
+
+```bash
+git clone https://github.com/jonathanjasare/evalseal
+cd evalseal
+python -m pip install dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl
+
+evaluation-gate gate \
+  --pack examples/fictional-support-assistant/evidence-pack \
+  --governance examples/fictional-support-assistant/governance.json \
+  --tailoring config/tailoring.reference.json \
+  --change-policy config/change-triggers.reference.json \
+  --as-of 2026-07-31T12:30:00Z \
+  --allow-fictional
+```
+
+Expected: `Decision: SIMULATED_APPROVE`, `Authorizes deployment: false`, exit
+3. Without `--allow-fictional`, the example returns `REJECT`; it cannot
+authorize deployment.
+
+EvalSeal is the project name. The Python distribution is currently
+`evaluation-methodology-gate`, and it installs the `evaluation-gate` command.
+The wheel is committed so protected CI can verify and install the exact release
+artifact without rebuilding source. Attach that same wheel to the corresponding
+GitHub Release.
 
 ## Purpose
 
-This reference implementation helps engineering, product, security, privacy, legal, and risk teams structure the evidence and accountable decision for an LLM release candidate. It covers six connected layers:
+EvalSeal helps engineering, product, security, privacy, legal, and risk teams structure the evidence and accountable decision for an LLM release candidate. It covers six connected layers:
 
 1. Threat modelling and risk assessment
 2. Quality and task evaluation
@@ -21,9 +53,9 @@ This reference implementation helps engineering, product, security, privacy, leg
 
 The method must be tailored to the system's intended purpose, affected people, autonomy, data, jurisdictions, and potential harms. It is not a certification scheme, a substitute for legal advice, or evidence of conformity with any standard or law.
 
-## Quick start
+## Start an assessment
 
-```powershell
+```bash
 python -m pip install dist/evaluation_methodology_gate-0.1.0-py3-none-any.whl
 evaluation-gate init my-assessment --candidate-id CAND-MY-SYSTEM-001 --name "My system"
 ```
@@ -69,8 +101,8 @@ Terms such as `active`, `complete`, `compliant`, and `production-ready` must not
 | [05-security-testing.md](05-security-testing.md) | Authorized adversarial testing and deterministic security controls |
 | [06-bias-and-fairness.md](06-bias-and-fairness.md) | Harm analysis, disaggregated evaluation, fairness metrics, and legal cautions |
 | [SOURCE_REGISTER.md](SOURCE_REGISTER.md) | Authoritative sources and the claims they support |
-| [PUBLICATION_AUDIT.md](PUBLICATION_AUDIT.md) | Historical fact-check, claim corrections, and scope limits |
-| [OPERATIONAL_RELEASE_AUDIT.md](OPERATIONAL_RELEASE_AUDIT.md) | Repository verification record, limitations, and release status |
+| [CLAIMS_LEDGER.md](CLAIMS_LEDGER.md) | Historical fact-check and claim corrections |
+| [VERIFICATION_NOTES.md](VERIFICATION_NOTES.md) | Executable release checks, trust dependencies, and limitations |
 | [docs/OPERATING_GUIDE.md](docs/OPERATING_GUIDE.md) | Installation, evidence workflow, preflight, final gate, and protected CI requirements |
 | [docs/ARCHITECTURE_AND_TRUST_BOUNDARY.md](docs/ARCHITECTURE_AND_TRUST_BOUNDARY.md) | Why the gate exists, what it can prove, and what remains outside its trust boundary |
 | [docs/QUICKSTART.md](docs/QUICKSTART.md) | Minimal Tier 1 scaffold, automated hashing, and the shortest safe onboarding path |
@@ -80,6 +112,10 @@ Terms such as `active`, `complete`, `compliant`, and `production-ready` must not
 | [evidence-pack-template/](evidence-pack-template/README.md) | Copyable production evidence-pack structure |
 | [machine-readable schemas](src/evaluation_gate/schemas/common.schema.json) | JSON Schema Draft 2020-12 contracts for policies and evidence |
 | [fictional worked example](examples/fictional-support-assistant/README.md) | Completed Tier 3 example that demonstrates the whole decision flow |
+| [docs/REFERENCE_EXAMPLE.md](docs/REFERENCE_EXAMPLE.md) | Walkthrough and expected output for the fictional example |
+| [CONTRIBUTING.md](CONTRIBUTING.md) | Branch naming, pull-request content, and review expectations |
+| [SECURITY.md](SECURITY.md) | Supported versions and private vulnerability reporting |
+| [CHANGELOG.md](CHANGELOG.md) | Release history and notable changes |
 
 ## Adoption workflow
 
@@ -117,11 +153,11 @@ Terms such as `active`, `complete`, `compliant`, and `production-ready` must not
 ## Maintenance
 
 - Review external references at least every six months and after a material legal or framework update.
-- Record source access dates and methodology changes in [SOURCE_REGISTER.md](SOURCE_REGISTER.md), [PUBLICATION_AUDIT.md](PUBLICATION_AUDIT.md), and [OPERATIONAL_RELEASE_AUDIT.md](OPERATIONAL_RELEASE_AUDIT.md).
-- Re-run the publication audit before a major version is issued.
+- Record source access dates and methodology changes in [SOURCE_REGISTER.md](SOURCE_REGISTER.md), [CLAIMS_LEDGER.md](CLAIMS_LEDGER.md), and [VERIFICATION_NOTES.md](VERIFICATION_NOTES.md).
+- Recheck the claims ledger before a major version is issued.
 
 ## License
 
-Licensed under the [Apache License 2.0](LICENSE), including its explicit patent
+Copyright 2026 Jonathan Asare. Licensed under the [Apache License 2.0](LICENSE), including its explicit patent
 grant. The license does not certify, warrant, or approve any system assessed
 with this software.

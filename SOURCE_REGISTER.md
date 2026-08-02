@@ -2,7 +2,7 @@
 
 **Last verified:** 2026-08-02
 
-This register records the primary or authoritative sources used for the publication audit. External links can change. Recheck the current version, applicability, and access date before relying on a claim in a production decision.
+This register records the primary or authoritative sources used for the claims review. External links can change. Recheck the current version, applicability, and access date before relying on a claim in a production decision.
 
 ## Standards, frameworks, and law
 

@@ -18,3 +18,17 @@ Allowed work types:
 - `chore` for maintenance, release, or tooling work.
 
 Choose the type that represents the primary purpose when a change spans categories. Use lowercase kebab-case for the description.
+
+## Pull requests
+
+Keep each pull request focused on one outcome. Its description should explain:
+
+- what changed and why;
+- how the change was verified;
+- material risks or limitations;
+- reviewer guidance; and
+- follow-up work intentionally left out.
+
+Add a pull-request comment when later verification, screenshots, release
+evidence, or review context does not belong in the original description. Do not
+leave reviewers to reconstruct important decisions from the commit history.

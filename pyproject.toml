@@ -5,14 +5,21 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "evaluation-methodology-gate"
 version = "0.1.0"
-description = "Evidence binding and accountable release-gate reference implementation for AI systems"
+description = "Deterministic evidence-bound release gate for AI systems"
 readme = "README.md"
+authors = [{ name = "Jonathan Asare" }]
 license = "Apache-2.0"
-license-files = ["LICENSE"]
+license-files = ["LICENSE", "NOTICE"]
 requires-python = ">=3.11"
 dependencies = [
   "jsonschema[format]==4.26.0",
 ]
+
+[project.urls]
+Source = "https://github.com/jonathanjasare/evalseal"
+Issues = "https://github.com/jonathanjasare/evalseal/issues"
+Changelog = "https://github.com/jonathanjasare/evalseal/blob/main/CHANGELOG.md"
+Security = "https://github.com/jonathanjasare/evalseal/security/policy"
 
 [project.scripts]
 evaluation-gate = "evaluation_gate.cli:main"

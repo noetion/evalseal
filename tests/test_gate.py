@@ -209,6 +209,29 @@ class GateTests(unittest.TestCase):
         self.assertIn("NON_PRODUCTION_PACK", codes(report))
         self.assertNotIn("SCHEMA_INVALID", codes(report))
 
+    def test_template_approval_binds_exact_template_inputs(self) -> None:
+        template = ROOT / "evidence-pack-template"
+        pack = read_json(template / "pack.json")
+        approval = read_json(template / "approval-decision.json")
+
+        for key, expected in approval["input_hashes"].items():
+            relative = "pack.json" if key == "pack" else pack["file_map"][key]
+            actual = hashlib.sha256((template / relative).read_bytes()).hexdigest()
+            self.assertEqual(expected, actual, key)
+
+    def test_json_schema_date_time_format_is_enforced(self) -> None:
+        pack_path = self.pack / "pack.json"
+        pack = read_json(pack_path)
+        pack["created_at"] = "not-a-timestamp"
+        write_json(pack_path, pack)
+
+        report = self.evaluate()
+
+        self.assertIn("SCHEMA_INVALID", codes(report))
+        self.assertTrue(
+            any("date-time" in issue.message for issue in report.blocking_issues)
+        )
+
     def test_duplicate_json_object_keys_are_rejected(self) -> None:
         path = self.pack / "pack.json"
         rendered = path.read_text(encoding="utf-8")
