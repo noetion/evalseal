@@ -1,6 +1,6 @@
 # EvalSeal
 
-[![CI](https://github.com/jonathanjasare/evalseal/actions/workflows/ci.yml/badge.svg)](https://github.com/jonathanjasare/evalseal/actions/workflows/ci.yml)
+[![CI](https://github.com/noetion/evalseal/actions/workflows/ci.yml/badge.svg)](https://github.com/noetion/evalseal/actions/workflows/ci.yml)
 
 **Evidence-bound release decisions for AI systems.**
 
@@ -17,7 +17,7 @@ decision chronology.
 ## Try it
 
 ```bash
-git clone https://github.com/jonathanjasare/evalseal
+git clone https://github.com/noetion/evalseal
 cd evalseal
 python -m pip install dist/evalseal-0.1.0-py3-none-any.whl
 
