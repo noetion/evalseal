@@ -4,6 +4,10 @@
 
 **Evidence-bound release decisions for AI systems.**
 
+An evaluation score alone does not establish that a release candidate has current
+evidence, resolved findings, and an authorized approval. EvalSeal checks those
+records together before returning a release decision.
+
 EvalSeal is a deterministic release gate. It takes an evidence pack containing
 the risks, controls, evaluation cases, findings, and approval decision for an AI
 release candidate, combines it with organization-owned governance, tailoring,
@@ -30,13 +34,37 @@ evalseal gate \
   --allow-fictional
 ```
 
-Expected: `Decision: SIMULATED_APPROVE`, `Authorizes deployment: false`, exit
-3. Without `--allow-fictional`, the example returns `REJECT`; it cannot
-authorize deployment.
+Expected output:
+
+```text
+Decision: SIMULATED_APPROVE
+Gate version: 0.1.0
+Mode: fictional
+Authorizes deployment: false
+Tier: tier_3
+Blocking issues: 0
+Warnings: 0
+```
+
+The command exits with code **3**, which identifies a simulation. The example
+cannot authorize deployment, even when all simulated checks pass.
+
+Run the same command without `--allow-fictional` to exercise the rejection path:
+it returns `REJECT` and exits with code **1**. The blocking reasons include
+`NON_PRODUCTION_PACK` and `POLICY_NOT_APPROVED`: fictional evidence and reference
+policies cannot authorize a production release.
 
 The wheel is committed so protected CI can verify and install the exact release
-artifact without rebuilding source. Attach that same wheel to the corresponding
-GitHub Release.
+artifact without rebuilding source.
+
+## Explore the implementation
+
+| Start here | What to inspect |
+|---|---|
+| [Gate tests](tests/test_gate.py) | Executable checks of release decisions and rejection conditions |
+| [CLI](src/evalseal/cli.py) | Assessment initialization, gate invocation, output formats, and exit codes |
+| [Fictional assessment](examples/fictional-support-assistant) | A complete example with evidence and governance records |
+| [Operating guide](docs/OPERATING_GUIDE.md) | Installation, policy ownership, and operational use |
 
 ## Purpose
 
